@@ -32,7 +32,7 @@ namespace Library.BLL.Services
             reader.Name = dto.Name;
 
             foreach (var deleted in reader.BookLoanRecords.Where(record =>
-                dto.BookLoanRecords.All(recordDto => recordDto.Id != record.Id)))
+                dto.BookLoanRecords.All(recordDto => recordDto.Id != record.Id)).ToList())
             {
                 reader.BookLoanRecords.Remove(deleted);
             }
@@ -42,13 +42,11 @@ namespace Library.BLL.Services
             dto.BookLoanRecords.ForEach(recordDto => { _bookLoanRecordService.AddOrUpdate(recordDto); });
         }
 
-        public ReaderDto Get(int? id)
+        public ReaderDto Get(int id)
         {
-            if (id == null)
-                throw new ValidationException("Id not assigned");
-            var entity = _readerRepository.Get(id.Value);
+            var entity = _readerRepository.Get(id);
             if (entity == null)
-                throw new ValidationException("Author Not found");
+                return null;
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -85,12 +83,9 @@ namespace Library.BLL.Services
             return mapper.Map<IEnumerable<Reader>, List<ReaderDto>>(_readerRepository.GetAll());
         }
 
-        public void Delete(int? id)
+        public void Delete(int id)
         {
-            if (id != null)
-            {
-                _readerRepository.Delete(id.Value);
-            }
+            _readerRepository.Delete(id);
         }
     }
 }

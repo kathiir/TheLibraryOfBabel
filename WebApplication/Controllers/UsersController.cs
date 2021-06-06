@@ -48,7 +48,7 @@ namespace WebApplication.Controllers
             return View(readerViewModels);
         }
 
-        public IActionResult User(int? id)
+        public IActionResult User(int id)
         {
             var readerDtos = _readerService.Get(id);
             
@@ -75,7 +75,7 @@ namespace WebApplication.Controllers
             return View(readerViewModels);
         }
         
-        public IActionResult Staff(int? id)
+        public IActionResult Staff(int id)
         {
             var staffDto = _staffService.Get(id);
             

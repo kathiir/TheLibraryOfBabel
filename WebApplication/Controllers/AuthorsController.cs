@@ -37,7 +37,7 @@ namespace WebApplication.Controllers
             return View(books);
         }
         
-        public IActionResult Author(int? id)
+        public IActionResult Author(int id)
         {
             var book = _authorService.Get(id);
 

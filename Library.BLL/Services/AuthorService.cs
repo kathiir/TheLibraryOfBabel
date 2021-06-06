@@ -31,7 +31,7 @@ namespace Library.BLL.Services
 
             author.Name = authorDto.Name;
 
-            foreach (var deleted in author.Books.Where(book => authorDto.Books.All(dto => dto.Id != book.Id)))
+            foreach (var deleted in author.Books.Where(book => authorDto.Books.All(dto => dto.Id != book.Id)).ToList())
             {
                 author.Books.Remove(deleted);
             }
@@ -43,22 +43,21 @@ namespace Library.BLL.Services
                 {
                     return;
                 }
+
                 if (author.Books.All(b => b.Id != book.Id))
                 {
                     author.Books.Add(book);
                 }
             });
-            
+
             _authorRepository.CreateOrUpdate(author);
         }
 
-        public AuthorDto Get(int? id)
+        public AuthorDto Get(int id)
         {
-            if (id == null)
-                throw new ValidationException("Id not assigned");
-            var author = _authorRepository.Get(id.Value);
+            var author = _authorRepository.Get(id);
             if (author == null)
-                throw new ValidationException("Author Not found");
+                return null;
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -89,15 +88,12 @@ namespace Library.BLL.Services
             return mapper.Map<IEnumerable<Author>, List<AuthorDto>>(_authorRepository.GetAll());
         }
 
-        public void Delete(int? id)
+        public void Delete(int id)
         {
-            if (id != null)
-            {
-                _authorRepository.Delete(id.Value);
-            }
+            _authorRepository.Delete(id);
         }
-        
-        
+
+
         public AuthorDto GetByNameOrCreate(string name)
         {
             var config = new MapperConfiguration(cfg =>
@@ -108,11 +104,12 @@ namespace Library.BLL.Services
             });
             config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();
-            
-            if (!_authorRepository.Find(item => item.Name.Equals(name)).Any())
-                _authorRepository.Create(new Author { Name = name });
 
-            var authorDto = mapper.Map<Author, AuthorDto>(_authorRepository.Find(item => item.Name.Equals(name)).First());
+            if (!_authorRepository.Find(item => item.Name.Equals(name)).Any())
+                _authorRepository.Create(new Author {Name = name});
+
+            var authorDto =
+                mapper.Map<Author, AuthorDto>(_authorRepository.Find(item => item.Name.Equals(name)).First());
 
             return authorDto;
         }
@@ -120,7 +117,7 @@ namespace Library.BLL.Services
         public List<AuthorDto> GetByNamesOrCreate(IEnumerable<string> names)
         {
             var authorDtos = new List<AuthorDto>();
-            
+
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Author, AuthorDto>();
@@ -129,12 +126,11 @@ namespace Library.BLL.Services
             });
             config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();
-            
-            foreach(var name in names)
+
+            foreach (var name in names)
             {
-                
                 if (!_authorRepository.Find(item => item.Name.Equals(name)).Any())
-                    _authorRepository.Create(new Author { Name = name });
+                    _authorRepository.Create(new Author {Name = name});
 
                 var d = mapper.Map<Author, AuthorDto>(_authorRepository.Find(item => item.Name.Equals(name)).First());
 

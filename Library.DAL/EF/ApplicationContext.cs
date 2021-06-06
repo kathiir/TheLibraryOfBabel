@@ -29,7 +29,7 @@ namespace Library.DAL.EF
         {
             optionsBuilder
                 .UseLazyLoadingProxies()
-                // .UseNpgsql("Host=localhost;Port=5432;Database=library;Username=postgres;Password=2456")
+                .UseNpgsql("Host=localhost;Port=5432;Database=library;Username=postgres;Password=2456")
                 ;
         }
     }

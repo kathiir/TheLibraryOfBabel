@@ -30,33 +30,23 @@ namespace Library.BLL.Services
             }
 
             staff.Name = dto.Name;
-            
-            foreach (var deleted in staff.BookLoanRecords.Where(record => dto.BookLoanRecords.All(recordDto => recordDto.Id != record.Id)))
+
+            foreach (var deleted in staff.BookLoanRecords.Where(record =>
+                dto.BookLoanRecords.All(recordDto => recordDto.Id != record.Id)).ToList())
             {
                 staff.BookLoanRecords.Remove(deleted);
             }
-            
+
             _staffRepository.CreateOrUpdate(staff);
 
-            dto.BookLoanRecords.ForEach(recordDto =>
-            {
-                // var record = _bookLoanRecordRepository.Get(dto.Id);
-                // if (record == null)
-                // {
-                    _bookLoanRecordService.AddOrUpdate(recordDto);
-                    // return;
-                // }
-            });
-            
+            dto.BookLoanRecords.ForEach(recordDto => _bookLoanRecordService.AddOrUpdate(recordDto));
         }
 
-        public StaffDto Get(int? id)
+        public StaffDto Get(int id)
         {
-            if (id == null)
-                throw new ValidationException("Id not assigned");
-            var entity = _staffRepository.Get(id.Value);
+            var entity = _staffRepository.Get(id);
             if (entity == null)
-                throw new ValidationException("Author Not found");
+                return null;
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -91,15 +81,11 @@ namespace Library.BLL.Services
 
             var mapper = config.CreateMapper();
             return mapper.Map<IEnumerable<Staff>, List<StaffDto>>(_staffRepository.GetAll());
-
         }
 
-        public void Delete(int? id)
+        public void Delete(int id)
         {
-            if (id != null)
-            {
-                _staffRepository.Delete(id.Value);
-            }
+            _staffRepository.Delete(id);
         }
     }
 }

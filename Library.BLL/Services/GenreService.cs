@@ -27,22 +27,17 @@ namespace Library.BLL.Services
             }
 
             genre.Name = dto.Name;
-            
+
             _repository.CreateOrUpdate(genre);
         }
 
-        public GenreDto Get(int? id)
+        public GenreDto Get(int id)
         {
-            if (id == null)
-                throw new ValidationException("Id not assigned");
-            var entity = _repository.Get(id.Value);
+            var entity = _repository.Get(id);
             if (entity == null)
-                throw new ValidationException("Author Not found");
+                return null;
 
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<Genre, GenreDto>();
-            });
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<Genre, GenreDto>(); });
             config.AssertConfigurationIsValid();
 
             var mapper = config.CreateMapper();
@@ -54,22 +49,16 @@ namespace Library.BLL.Services
 
         public List<GenreDto> GetAll()
         {
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<Genre, GenreDto>();
-            });
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<Genre, GenreDto>(); });
             config.AssertConfigurationIsValid();
 
             var mapper = config.CreateMapper();
             return mapper.Map<IEnumerable<Genre>, List<GenreDto>>(_repository.GetAll());
         }
 
-        public void Delete(int? id)
+        public void Delete(int id)
         {
-            if (id != null)
-            {
-                _repository.Delete(id.Value);
-            }
+            _repository.Delete(id);
         }
     }
 }

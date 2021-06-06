@@ -15,14 +15,17 @@ namespace Library.BLL.Services
         private readonly IRepository<Book> _bookRepository;
         private readonly IRepository<Author> _authorRepository;
         private readonly IRepository<Genre> _genreRepository;
+        private readonly IRepository<BookLoanRecord> _bookLoanRecordRepository;
 
-        public BookService(IRepository<Book> bookRepository, IRepository<Author> authorRepository, IRepository<Genre> genreRepository)
+        public BookService(IRepository<Book> bookRepository, IRepository<Author> authorRepository,
+            IRepository<Genre> genreRepository, IRepository<BookLoanRecord> bookLoanRecordRepository)
         {
             _bookRepository = bookRepository;
             _authorRepository = authorRepository;
             _genreRepository = genreRepository;
+            _bookLoanRecordRepository = bookLoanRecordRepository;
         }
-        
+
         public void AddOrUpdate(BookDto dto)
         {
             var book = _bookRepository.Get(dto.Id);
@@ -40,12 +43,13 @@ namespace Library.BLL.Services
             {
                 book.Genre = _genreRepository.Get(dto.Genre.Id);
             }
-            
-            foreach (var deleted in book.Authors.Where(author => dto.Authors.All(authorDto => authorDto.Id != author.Id)))
+
+            foreach (var deleted in book.Authors.Where(
+                author => dto.Authors.All(authorDto => authorDto.Id != author.Id)).ToList())
             {
                 book.Authors.Remove(deleted);
             }
-            
+
             dto.Authors.ForEach(authorDto =>
             {
                 var author = _authorRepository.Get(authorDto.Id);
@@ -61,19 +65,17 @@ namespace Library.BLL.Services
                     book.Authors.Add(author);
                 }
             });
-            
+
             _bookRepository.CreateOrUpdate(book);
         }
 
-        public BookDto Get(int? id)
+        public BookDto Get(int id)
         {
-            if (id == null)
-                throw new ValidationException("Id not assigned");
-            var book = _bookRepository.Get(id.Value);
+            var book = _bookRepository.Get(id);
             if (book == null)
-                throw new ValidationException("Book Not found");
+                return null;
 
-            
+
             // var a = book.Genre;
             var config = new MapperConfiguration(cfg =>
             {
@@ -102,16 +104,17 @@ namespace Library.BLL.Services
 
             var mapper = config.CreateMapper();
             return mapper.Map<IEnumerable<Book>, List<BookDto>>(_bookRepository.GetAll());
-
         }
 
-        public void Delete(int? id)
+        public void Delete(int id)
         {
-            if (id != null)
-            {
-                _bookRepository.Delete(id.Value);
-            }
+            _bookRepository.Delete(id);
         }
 
+        public int GetLoanedCopiesCount(int bookId)
+        {
+            return _bookLoanRecordRepository.Count(record =>
+                record.Book.Id == bookId && record.ReturnDate < DateTime.Now);
+        }
     }
 }

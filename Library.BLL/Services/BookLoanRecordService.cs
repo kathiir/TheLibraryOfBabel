@@ -15,7 +15,7 @@ namespace Library.BLL.Services
         private readonly IRepository<Reader> _readerRepository;
         private readonly IRepository<Staff> _staffRepository;
 
-        public BookLoanRecordService(IRepository<BookLoanRecord> bookLoanRecordRepository, 
+        public BookLoanRecordService(IRepository<BookLoanRecord> bookLoanRecordRepository,
             IRepository<Book> bookRepository, IRepository<Reader> readerRepository,
             IRepository<Staff> staffRepository)
         {
@@ -24,14 +24,14 @@ namespace Library.BLL.Services
             _readerRepository = readerRepository;
             _staffRepository = staffRepository;
         }
-        
+
         public void AddOrUpdate(BookLoanRecordDto dto)
         {
             if (dto.Book == null || dto.Reader == null)
             {
                 return;
             }
-            
+
             var bookLoanRecord = _bookLoanRecordRepository.Get(dto.Id);
 
             if (bookLoanRecord == null)
@@ -49,17 +49,16 @@ namespace Library.BLL.Services
             {
                 bookLoanRecord.Staff = _staffRepository.Get(dto.Staff.Id);
             }
-            
+
             _bookLoanRecordRepository.CreateOrUpdate(bookLoanRecord);
         }
 
-        public BookLoanRecordDto Get(int? id)
+        public BookLoanRecordDto Get(int id)
         {
-            if (id == null)
-                throw new ValidationException("Id not assigned");
-            var entity = _bookLoanRecordRepository.Get(id.Value);
+            var entity = _bookLoanRecordRepository.Get(id);
             if (entity == null)
-                throw new ValidationException("Author Not found");
+                return null;
+
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -96,12 +95,9 @@ namespace Library.BLL.Services
             return mapper.Map<IEnumerable<BookLoanRecord>, List<BookLoanRecordDto>>(_bookLoanRecordRepository.GetAll());
         }
 
-        public void Delete(int? id)
+        public void Delete(int id)
         {
-            if (id != null)
-            {
-                _bookLoanRecordRepository.Delete(id.Value);
-            }
+            _bookLoanRecordRepository.Delete(id);
         }
     }
 }

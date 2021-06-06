@@ -14,5 +14,7 @@ namespace Library.DAL.Interfaces
         void Update(T item);
         void Delete(int id);
         bool Exists(int? id);
+        int Count();
+        int Count(Func<T, Boolean> predicate);
     }
 }

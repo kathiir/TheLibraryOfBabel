@@ -86,5 +86,15 @@ namespace Library.DAL.Repositories
 
             return false;
         }
+
+        public int Count()
+        {
+            return _entities.Count();
+        }
+
+        public int Count(Func<T, bool> predicate)
+        {
+            return _entities.Count(predicate);
+        }
     }
 }

@@ -7,9 +7,6 @@
 <div class="jumbotron">
     <h1 class="display-3">Book Edit</h1>
     <hr class="my-4">
-    @* <p class="lead"> *@
-    @* <a class="btn btn-primary btn-lg" href="#" role="button">Save</a> *@
-    @* </p> *@
 </div>
 
 <div>
@@ -21,8 +18,8 @@
         <div class="float-left invalid-feedback">
             Invalid name.
         </div>
-        <label for="Authors" class="form-label">Authors:</label>
-
+        
+        <label for="Authors" class="col-form-label float-left">Authors:</label>
         <div>
             <select id="Authors" name="Authors" class="form-control" multiple>
                 @foreach (var author in ViewData["Authors"] as List<AuthorViewModel>)
@@ -38,8 +35,9 @@
         </div>
 
         <label for="NumberOfCopies" class="col-form-label float-left">Number Of Books:</label>
-        <input id="NumberOfCopies" name="NumberOfCopies" type="number" class="form-control" min="0" required/>
-
+        <input id="NumberOfCopies" name="NumberOfCopies" type="number" class="form-control" min="0" value="@Model.NumberOfCopies" required/>
+        
+        <label for="Genre" class="col-form-label float-left">Genre:</label>
         <div>
             <select id="Genre" name="Genre" class="form-control">
                 @foreach (var genre in ViewData["Genres"] as List<GenreViewModel>)
@@ -54,7 +52,7 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary" value="newItem">Save</button>
+        <button type="submit" class="mt-2 btn btn-primary" value="newItem">Save</button>
 
     </form>
 </div>

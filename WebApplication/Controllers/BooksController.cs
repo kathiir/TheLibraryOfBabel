@@ -18,7 +18,8 @@ namespace WebApplication.Controllers
         private readonly IGenreService _genreService;
         private readonly IAuthorService _authorService;
 
-        public BooksController(ILogger<BooksController> logger, IBookService bookService, IGenreService genreService, IAuthorService authorService)
+        public BooksController(ILogger<BooksController> logger, IBookService bookService, IGenreService genreService,
+            IAuthorService authorService)
         {
             _logger = logger;
             _bookService = bookService;
@@ -53,7 +54,7 @@ namespace WebApplication.Controllers
             var authorDtos = _authorService.GetAll();
             var genreDto = _genreService.GetAll();
 
-            
+
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<BookDto, BookViewModel>();
@@ -69,20 +70,14 @@ namespace WebApplication.Controllers
             ViewData["Authors"] = authorViewModels;
             ViewData["Genres"] = genres;
 
-            try
+            var book = _bookService.Get(id);
+            if (book == null)
             {
-                var book = _bookService.Get(id);
-                var bookViewModel = mapper.Map<BookDto, BookViewModel>(book);
-
-                
-                
-                return View(bookViewModel);
+                return View(new BookViewModel());
             }
-            catch (ValidationException e)
-            {
-                return View( new BookViewModel());
-            }
+            var bookViewModel = mapper.Map<BookDto, BookViewModel>(book);
 
+            return View(bookViewModel);
         }
 
         [HttpPost]
@@ -104,14 +99,22 @@ namespace WebApplication.Controllers
             });
             // config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();
-            
+
             var bookDto = mapper.Map<BookViewModel, BookDto>(bookViewModel);
 
             bookDto.Genre = _genreService.Get(genre);
 
             bookDto.Authors = _authorService.GetByNamesOrCreate(authors);
+
+            int count = _bookService.GetLoanedCopiesCount(bookDto.Id);
+            bookDto.NumberOfCopies = bookDto.NumberOfCopies >= count
+                ? bookDto.NumberOfCopies
+                : count;
+
+            bookDto.NumberOfCopiesCurrent = bookDto.NumberOfCopies - count;
+
             _bookService.AddOrUpdate(bookDto);
-            
+
             return RedirectPermanent("~/Books/");
         }
 
