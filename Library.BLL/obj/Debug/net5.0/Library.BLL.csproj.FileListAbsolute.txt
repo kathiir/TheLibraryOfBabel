@@ -1,0 +1,15 @@
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.BLL\bin\Debug\net5.0\Library.BLL.deps.json
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.BLL\bin\Debug\net5.0\Library.BLL.dll
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.BLL\bin\Debug\net5.0\ref\Library.BLL.dll
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.BLL\bin\Debug\net5.0\Library.BLL.pdb
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.BLL\bin\Debug\net5.0\Library.DAL.dll
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.BLL\bin\Debug\net5.0\Library.DAL.pdb
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.BLL\obj\Debug\net5.0\Library.BLL.csprojAssemblyReference.cache
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.BLL\obj\Debug\net5.0\Library.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.BLL\obj\Debug\net5.0\Library.BLL.AssemblyInfoInputs.cache
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.BLL\obj\Debug\net5.0\Library.BLL.AssemblyInfo.cs
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.BLL\obj\Debug\net5.0\Library.BLL.csproj.CoreCompileInputs.cache
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.BLL\obj\Debug\net5.0\Library.BLL.csproj.CopyComplete
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.BLL\obj\Debug\net5.0\Library.BLL.dll
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.BLL\obj\Debug\net5.0\ref\Library.BLL.dll
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.BLL\obj\Debug\net5.0\Library.BLL.pdb

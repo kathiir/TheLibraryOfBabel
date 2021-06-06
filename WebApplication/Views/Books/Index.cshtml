@@ -1,0 +1,126 @@
+﻿@model System.Collections.Generic.List<WebApplication.Models.BookViewModel>
+
+@{
+    ViewData["Title"] = "Books Page";
+}
+
+<div class="jumbotron">
+    <h1 class="display-3">Books</h1>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="~/Books/Book/" role="button">Add Book</a>
+    </p>
+</div>
+
+<div>
+    <input class="form-control mb-4" id="searchInput" type="text" placeholder="Search..">
+</div>
+
+<div>
+    Or
+</div>
+
+<div class="my-4">
+    <h3>Filter</h3>
+    <div>
+        <div>
+            Genres
+        </div>
+        <div>
+            @foreach (var genre in ViewData["Genres"] as IEnumerable<GenreViewModel>)
+            {
+                <label>
+                    <input type="checkbox" class="genres" value="@genre.Id"> @genre.Name
+                </label>
+            }
+        </div>
+    </div>
+</div>
+
+@* AddBook *@
+
+@* BookTable with edit button *@
+
+<table class="text-center table table-striped">
+    <thead class="thead-light">
+    <th scope="col">Name</th>
+    <th scope="col">Authors</th>
+    <th scope="col">Remains</th>
+    <th scope="col">Number Of Copies</th>
+    <th scope="col">Genre</th>
+    <th scope="col">Delete</th>
+
+
+    </thead>
+    <tbody>
+
+    @foreach (var book in ViewData.Model)
+    {
+        <tr data-genre="@book.Genre?.Id" class="rows">
+            <td>
+                <a asp-route-id="@book.Id" asp-action="Book">
+                    @book.Name
+                </a>
+            </td>
+            <td>
+                @book.GetAuthors()
+            </td>
+            <td>
+                @book.NumberOfCopiesCurrent
+            </td>
+            <td>
+                @book.NumberOfCopies
+            </td>
+            <td>
+                @book.Genre?.Name
+            </td>
+            <td>
+                <a href="~/Books/RemoveBook/?id=@book.Id" class="btn btn-outline-danger">
+                    Remove
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@section Scripts {
+
+
+    <script>
+        $(document).ready(function () {
+            $("#searchInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $(".rows").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $("input:checkbox").on("change", function () {
+                var c = $(".genres:checkbox:checked").map(function () {
+                    return $(this).val()
+                }).get();
+                
+                $(".rows").hide();
+
+                var cards = $(".rows");
+
+                if (c.length > 0) {
+                    cards = cards.filter(function () {
+                        var cl = $(this).data('genre'),
+                            index = $.inArray(cl.toString(), c);
+                        return index >= 0
+                    });
+                }
+
+                cards.show();
+
+            }).first().change()
+        });
+    </script>
+}

@@ -1,0 +1,76 @@
+﻿@model BookViewModel
+
+@{
+    ViewData["Title"] = "Book Page";
+}
+
+<div class="jumbotron">
+    <h1 class="display-3">Book Edit</h1>
+    <hr class="my-4">
+    @* <p class="lead"> *@
+    @* <a class="btn btn-primary btn-lg" href="#" role="button">Save</a> *@
+    @* </p> *@
+</div>
+
+<div>
+    <form method="post">
+        <input id="Id" type="hidden" name="Id" value="@Model.Id">
+
+        <label for="Name" class="col-form-label float-left">Book Name:</label>
+        <input id="Name" name="Name" type="text" class="form-control" placeholder="Book" value="@Model.Name" required/>
+        <div class="float-left invalid-feedback">
+            Invalid name.
+        </div>
+        <label for="Authors" class="form-label">Authors:</label>
+
+        <div>
+            <select id="Authors" name="Authors" class="form-control" multiple>
+                @foreach (var author in ViewData["Authors"] as List<AuthorViewModel>)
+                {
+                    @:<option value="@author.Name"
+                    if (Model.Authors.Any(a => author.Id == a.Id))
+                    {
+                        @:selected
+                    }
+                    @: >@author.Name</option>
+                }
+            </select>
+        </div>
+
+        <label for="NumberOfCopies" class="col-form-label float-left">Number Of Books:</label>
+        <input id="NumberOfCopies" name="NumberOfCopies" type="number" class="form-control" min="0" required/>
+
+        <div>
+            <select id="Genre" name="Genre" class="form-control">
+                @foreach (var genre in ViewData["Genres"] as List<GenreViewModel>)
+                {
+                    @: <option value="@genre.Id"
+                    @if (Model.Genre.Id == genre.Id)
+                    {
+                        @: selected
+                    }
+                    @: >@genre.Name</option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" value="newItem">Save</button>
+
+    </form>
+</div>
+
+@section Scripts
+{
+    <script>
+    $(document).ready(function () {
+          $('#Authors').select2({
+                // dropdownParent: $("#modals-body"),
+                multiple: true,
+                tags: true
+                // width: '100%',
+                // theme: 'bootstrap4'
+                //    placeholder: 'Categories',
+                });
+    });
+</script>
+}

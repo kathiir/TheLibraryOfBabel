@@ -1,0 +1,12 @@
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.DAL\bin\Debug\net5.0\Library.DAL.deps.json
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.DAL\bin\Debug\net5.0\Library.DAL.dll
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.DAL\bin\Debug\net5.0\ref\Library.DAL.dll
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.DAL\bin\Debug\net5.0\Library.DAL.pdb
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.DAL\obj\Debug\net5.0\Library.DAL.csprojAssemblyReference.cache
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.DAL\obj\Debug\net5.0\Library.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.DAL\obj\Debug\net5.0\Library.DAL.AssemblyInfoInputs.cache
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.DAL\obj\Debug\net5.0\Library.DAL.AssemblyInfo.cs
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.DAL\obj\Debug\net5.0\Library.DAL.csproj.CoreCompileInputs.cache
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.DAL\obj\Debug\net5.0\Library.DAL.dll
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.DAL\obj\Debug\net5.0\ref\Library.DAL.dll
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\Library.DAL\obj\Debug\net5.0\Library.DAL.pdb
