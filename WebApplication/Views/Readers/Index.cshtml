@@ -33,7 +33,7 @@
            asp-route-sortBy="number_@ViewData["numberOrder"]"
            asp-route-pageNumber="@ViewData["page"]"
            asp-route-search="@ViewData["searchFilt"]">
-        Number Of Books
+        Number Of Books Loaned
         </a>
     </th>
     <th scope="col" class="col-2">
@@ -46,12 +46,12 @@
     {
         <tr class="rows">
             <td>
-                <a asp-route-id="@item.Id" asp-action="Author">
+                <a asp-route-id="@item.Id" asp-action="Reader">
                     @item.Name
                 </a>
             </td>
             <td>
-                @item.Books.Count
+                @item.BookLoanRecords.Count
             </td>
             <td>
                 <a href="~/Readers/RemoveReader/?id=@item.Id" class="btn btn-outline-danger">

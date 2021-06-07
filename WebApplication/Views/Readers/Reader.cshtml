@@ -1,8 +1,25 @@
 ﻿@model ReaderViewModel
 
 @{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
+    ViewData["Title"] = "Reader Page";
 }
 
-<h2>title</h2>
+<div class="jumbotron">
+    <h1 class="display-3">Reader Edit</h1>
+    <hr class="my-4">
+</div>
+
+<div>
+    <form method="post">
+        <input id="Id" type="hidden" name="Id" value="@Model.Id">
+
+        <label for="Name" class="col-form-label float-left">Reader Name:</label>
+        <input id="Name" name="Name" type="text" class="form-control" placeholder="Reader" value="@Model.Name" required/>
+        <div class="float-left invalid-feedback">
+            Invalid name.
+        </div>
+
+        <button type="submit" class="mt-2 btn btn-primary" value="newItem">Save</button>
+
+    </form>
+</div>

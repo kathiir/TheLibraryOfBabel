@@ -67,9 +67,7 @@ C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\R
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Authors\Index.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Books\Book.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Books\Index.cshtml.g.cs
-C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Users\Index.cshtml.g.cs
-C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Users\Staff.cshtml.g.cs
-C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Users\User.cshtml.g.cs
-C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Users\UserList.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Genres\Index.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Genres\Genre.cshtml.g.cs
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Readers\Index.cshtml.g.cs
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Readers\Reader.cshtml.g.cs

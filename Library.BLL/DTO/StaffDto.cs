@@ -9,5 +9,9 @@ namespace Library.BLL.DTO
         public string Name { get; set; }
         public List<BookLoanRecordDto> BookLoanRecords { get; set; }
 
+        public StaffDto()
+        {
+            BookLoanRecords = new List<BookLoanRecordDto>();
+        }
     }
 }
