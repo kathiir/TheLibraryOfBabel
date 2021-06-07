@@ -70,18 +70,14 @@
 }
 
 <a asp-action="Index"
-   asp-route-sortBy="@ViewData["orderBy"]_@ViewData["genreOrder"]"
-   asp-route-authorsFilter="@ViewData["authorFiltString"]"
-   asp-route-genreFilter="@ViewData["genreFiltString"]"
+   asp-route-sortBy="@ViewData["orderBy"]_@ViewData["currentOrder"]"
    asp-route-search="@ViewData["searchFilt"]"
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    class="btn btn-default @prevDisabled">
     Previous
 </a>
 <a asp-action="Index"
-   asp-route-sortBy="@ViewData["orderBy"]_@ViewData["genreOrder"]"
-   asp-route-authorsFilter="@ViewData["authorFiltString"]"
-   asp-route-genreFilter="@ViewData["genreFiltString"]"
+   asp-route-sortBy="@ViewData["orderBy"]_@ViewData["currentOrder"]"
    asp-route-search="@ViewData["searchFilt"]"   
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    class="btn btn-default @nextDisabled">

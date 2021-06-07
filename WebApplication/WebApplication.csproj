@@ -8,4 +8,9 @@
       <ProjectReference Include="..\Library.BLL\Library.BLL.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Views\BookLoan" />
+      <Folder Include="Views\Staff" />
+    </ItemGroup>
+
 </Project>

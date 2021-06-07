@@ -1048,3 +1048,18 @@ Removing book with id=10
 Removing book with id=12
 Removing book with id=3
 Removing book with id=9
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Adding new genre
+Adding new genre
+Adding new genre
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Updating item with id=2

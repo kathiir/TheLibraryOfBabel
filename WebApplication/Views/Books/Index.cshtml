@@ -147,7 +147,7 @@
 }
 
 <a asp-action="Index"
-   asp-route-sortBy="@ViewData["orderBy"]_@ViewData["genreOrder"]"
+   asp-route-sortBy="@ViewData["orderBy"]_@ViewData["currentOrder"]"
    asp-route-authorsFilter="@ViewData["authorFiltString"]"
    asp-route-genreFilter="@ViewData["genreFiltString"]"
    asp-route-search="@ViewData["searchFilt"]"
@@ -156,7 +156,7 @@
     Previous
 </a>
 <a asp-action="Index"
-   asp-route-sortBy="@ViewData["orderBy"]_@ViewData["genreOrder"]"
+   asp-route-sortBy="@ViewData["orderBy"]_@ViewData["currentOrder"]"
    asp-route-authorsFilter="@ViewData["authorFiltString"]"
    asp-route-genreFilter="@ViewData["genreFiltString"]"
    asp-route-search="@ViewData["searchFilt"]"   

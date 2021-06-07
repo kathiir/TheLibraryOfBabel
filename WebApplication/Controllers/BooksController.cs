@@ -107,6 +107,9 @@ namespace WebApplication.Controllers
             ViewData["numberOrder"] = "asc";
             ViewData["nameOrder"] = "asc";
 
+            ViewData["currentOrder"] = "asc";
+
+            
             ViewData["orderBy"] = sort[0];
     
             switch (sort[0])
@@ -114,22 +117,27 @@ namespace WebApplication.Controllers
                 case "authors":
                     books = books.OrderBy(item => item.GetAuthors()).ToList();
                     ViewData["authorsOrder"] = desc ? "asc" : "desc";
+                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
                 case "genre":
                     books = books.OrderBy(item => item.Genre == null ? "" : item.Genre.Name).ToList();
                     ViewData["genreOrder"] = desc ? "asc" : "desc";
+                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
                 case "remain":
                     books = books.OrderBy(item => item.NumberOfCopiesCurrent).ToList();
                     ViewData["remainOrder"] = desc ? "asc" : "desc";
+                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
                 case "number":
                     books = books.OrderBy(item => item.NumberOfCopies).ToList();
                     ViewData["numberOrder"] = desc ? "asc" : "desc";
+                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
                 default:
                     books = books.OrderBy(item => item.Name).ToList();
                     ViewData["nameOrder"] = desc ? "asc" : "desc";
+                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
             }
 

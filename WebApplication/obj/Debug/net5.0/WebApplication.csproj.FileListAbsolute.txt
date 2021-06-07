@@ -72,3 +72,4 @@ C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\R
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Users\User.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Users\UserList.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Genres\Index.cshtml.g.cs
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Genres\Genre.cshtml.g.cs

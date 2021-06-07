@@ -31,7 +31,6 @@ namespace WebApplication.Controllers
             string search,
             int? pageNumber) 
         {
-            // var bookList = _bookService.GetAll();
             var authorList = _authorService.GetAll();
 
             if (sortBy.IsNullOrEmpty())
@@ -56,7 +55,6 @@ namespace WebApplication.Controllers
             config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();
 
-            // var books = mapper.Map<List<BookDto>, List<BookViewModel>>(bookList);
             var authors = mapper.Map<List<AuthorDto>, List<AuthorViewModel>>(authorList);
 
             var sort = sortBy.Split("_");
@@ -65,6 +63,8 @@ namespace WebApplication.Controllers
             
             ViewData["numberOrder"] = "asc";
             ViewData["nameOrder"] = "asc";
+            
+            ViewData["currentOrder"] = "asc";
 
             ViewData["orderBy"] = sort[0];
     
@@ -73,10 +73,12 @@ namespace WebApplication.Controllers
                 case "number":
                     authors = authors.OrderBy(item => item.Books.Count).ToList();
                     ViewData["numberOrder"] = desc ? "asc" : "desc";
+                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
                 default:
                     authors = authors.OrderBy(item => item.Name).ToList();
                     ViewData["nameOrder"] = desc ? "asc" : "desc";
+                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
             }
 

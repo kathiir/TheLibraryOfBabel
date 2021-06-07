@@ -43,7 +43,7 @@
                 @foreach (var genre in ViewData["Genres"] as List<GenreViewModel>)
                 {
                     @: <option value="@genre.Id"
-                    @if (Model.Genre.Id == genre.Id)
+                    @if (Model.Genre != null && Model.Genre.Id == genre.Id)
                     {
                         @: selected
                     }
