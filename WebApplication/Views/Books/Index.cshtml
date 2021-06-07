@@ -1,4 +1,4 @@
-﻿@model System.Collections.Generic.List<WebApplication.Models.BookViewModel>
+﻿@model WebApplication.Utils.PaginatedList<WebApplication.Models.BookViewModel>
 
 @{
     ViewData["Title"] = "Books Page";
@@ -12,45 +12,102 @@
     </p>
 </div>
 
-<div>
-    <input class="form-control mb-4" id="searchInput" type="text" placeholder="Search..">
-</div>
-
-<div>
-    Or
-</div>
-
-<div class="my-4">
-    <h3>Filter</h3>
+<form method="get">
     <div>
+        <input class="form-control mb-4" id="search" name="search" type="text" placeholder="Search.." value="@ViewData["searchFilt"]">
+    </div>
+
+    <div class="my-4">
+        <h3>Filter</h3>
         <div>
-            Genres
-        </div>
-        <div>
-            @foreach (var genre in ViewData["Genres"] as IEnumerable<GenreViewModel>)
-            {
-                <label>
-                    <input type="checkbox" class="genres" value="@genre.Id"> @genre.Name
-                </label>
-            }
+            <label for="authorsFilter" class="col-form-label float-left">Authors:</label>
+            <div>
+                <select id="authorsFilter" name="authorsFilter" class="form-control" multiple>
+                    @foreach (var author in ViewData["Authors"] as List<AuthorViewModel>)
+                    {
+                        @:<option value="@author.Id"
+                        if ((ViewData["authorFilt"] as int[]).Any(a => author.Id == a))
+                        {
+                            @:selected
+                        }
+                        @: >@author.Name</option>
+                    }
+                </select>
+            </div>
+            <label for="genreFilter" class="col-form-label float-left">Genres:</label>
+            <div>
+                <select id="genreFilter" name="genreFilter" class="form-control" multiple>
+                    @foreach (var item in ViewData["Genres"] as List<GenreViewModel>)
+                    {
+                        @:<option value="@item.Id"
+                        if ((ViewData["genreFilt"] as int[]).Any(a => item.Id == a))
+                        {
+                            @:selected
+                        }
+                        @: >@item.Name</option>
+                    }
+                </select>
+            </div>
         </div>
     </div>
-</div>
+</form>
 
-@* AddBook *@
-
-@* BookTable with edit button *@
 
 <table class="text-center table table-striped">
     <thead class="thead-light">
-    <th scope="col">Name</th>
-    <th scope="col">Authors</th>
-    <th scope="col">Remains</th>
-    <th scope="col">Number Of Copies</th>
-    <th scope="col">Genre</th>
-    <th scope="col">Delete</th>
-
-
+    <th scope="col">
+        <a asp-action="Index"
+           asp-route-sortBy="name_@ViewData["nameOrder"]"
+           asp-route-authorsFilter="@ViewData["authorFiltString"]"
+           asp-route-genreFilter="@ViewData["genreFiltString"]"
+           asp-route-pageNumber="@ViewData["page"]"
+           asp-route-search="@ViewData["searchFilt"]">
+            Name
+        </a>
+    </th>
+    <th scope="col">
+        <a asp-action="Index"
+           asp-route-sortBy="authors_@ViewData["authorsOrder"]"
+           asp-route-authorsFilter="@ViewData["authorFiltString"]"
+           asp-route-genreFilter="@ViewData["genreFiltString"]"
+           asp-route-pageNumber="@ViewData["page"]"
+           asp-route-search="@ViewData["searchFilt"]">
+        Authors
+        </a>
+    </th>
+    <th scope="col">
+        <a asp-action="Index"
+           asp-route-sortBy="remain_@ViewData["remainOrder"]"
+           asp-route-authorsFilter="@ViewData["authorFiltString"]"
+           asp-route-genreFilter="@ViewData["genreFiltString"]"
+           asp-route-pageNumber="@ViewData["page"]"
+           asp-route-search="@ViewData["searchFilt"]">
+        Remains
+        </a>
+    </th>
+    <th scope="col">
+        <a asp-action="Index"
+           asp-route-sortBy="number_@ViewData["numberOrder"]"
+           asp-route-authorsFilter="@ViewData["authorFiltString"]"
+           asp-route-genreFilter="@ViewData["genreFiltString"]"
+           asp-route-pageNumber="@ViewData["page"]"
+           asp-route-search="@ViewData["searchFilt"]">
+        Number Of Copies
+        </a>
+    </th>
+    <th scope="col">
+        <a asp-action="Index"
+           asp-route-sortBy="genre_@ViewData["genreOrder"]"
+           asp-route-authorsFilter="@ViewData["authorFiltString"]"
+           asp-route-genreFilter="@ViewData["genreFiltString"]"
+           asp-route-pageNumber="@ViewData["page"]"
+           asp-route-search="@ViewData["searchFilt"]">
+            Genre
+        </a>
+    </th>
+    <th scope="col">
+        Delete
+    </th>
     </thead>
     <tbody>
 
@@ -84,43 +141,45 @@
     </tbody>
 </table>
 
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortBy="@ViewData["orderBy"]_@ViewData["genreOrder"]"
+   asp-route-authorsFilter="@ViewData["authorFiltString"]"
+   asp-route-genreFilter="@ViewData["genreFiltString"]"
+   asp-route-search="@ViewData["searchFilt"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortBy="@ViewData["orderBy"]_@ViewData["genreOrder"]"
+   asp-route-authorsFilter="@ViewData["authorFiltString"]"
+   asp-route-genreFilter="@ViewData["genreFiltString"]"
+   asp-route-search="@ViewData["searchFilt"]"   
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+
 @section Scripts {
-
-
     <script>
         $(document).ready(function () {
-            $("#searchInput").on("keyup", function () {
-                var value = $(this).val().toLowerCase();
-                $(".rows").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
+            $('#authorsFilter').select2({
+                multiple: true
             });
         });
     </script>
 
     <script>
         $(document).ready(function () {
-
-            $("input:checkbox").on("change", function () {
-                var c = $(".genres:checkbox:checked").map(function () {
-                    return $(this).val()
-                }).get();
-                
-                $(".rows").hide();
-
-                var cards = $(".rows");
-
-                if (c.length > 0) {
-                    cards = cards.filter(function () {
-                        var cl = $(this).data('genre'),
-                            index = $.inArray(cl.toString(), c);
-                        return index >= 0
-                    });
-                }
-
-                cards.show();
-
-            }).first().change()
+            $('#genreFilter').select2({
+                multiple: true
+            });
         });
     </script>
 }
+

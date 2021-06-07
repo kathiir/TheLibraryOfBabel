@@ -16,5 +16,6 @@ namespace Library.DAL.Interfaces
         bool Exists(int? id);
         int Count();
         int Count(Func<T, Boolean> predicate);
+        
     }
 }

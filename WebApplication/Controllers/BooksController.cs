@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using AutoMapper;
+using Castle.Core.Internal;
 using Library.BLL.DTO;
 using Library.BLL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApplication.Models;
+using WebApplication.Utils;
 
 namespace WebApplication.Controllers
 {
@@ -27,10 +31,57 @@ namespace WebApplication.Controllers
             _authorService = authorService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(
+            string sortBy,
+            string[] authorsFilter,
+            string[] genreFilter,
+            string search,
+            int? pageNumber) 
         {
             var bookList = _bookService.GetAll();
             var genreDto = _genreService.GetAll();
+            var authorDtos = _authorService.GetAll();
+
+            if (sortBy.IsNullOrEmpty())
+            {
+                sortBy = "name_asc";
+            }
+
+            if (genreFilter.Length == 1)
+            {
+                genreFilter = genreFilter[0].Split(",");
+            }
+            if (authorsFilter.Length == 1)
+            {
+                authorsFilter = authorsFilter[0].Split(",");
+            }
+            
+            var autFilt = Array.ConvertAll(authorsFilter, s => int.Parse(s));
+            var genFilt = Array.ConvertAll(genreFilter, s => int.Parse(s));
+
+            ViewData["authorFilt"] = autFilt;
+            ViewData["genreFilt"] = genFilt;
+            ViewData["authorFiltString"] = String.Join(",", authorsFilter);
+            ViewData["genreFiltString"] = String.Join(",", genreFilter);
+
+            ViewData["searchFilt"] = search;
+            ViewData["page"] = pageNumber;
+
+
+            if (search != null)
+            {
+                bookList = bookList.Where(item => item.Name.ToLower().Contains(search)).ToList();
+            }
+
+            if (!authorsFilter.IsNullOrEmpty())
+            {
+                bookList = bookList.Where(item => item.Authors.Any(it => autFilt.Contains(it.Id))).ToList();
+            }
+            
+            if (!genreFilter.IsNullOrEmpty())
+            {
+                bookList = bookList.Where(item => genFilt.Contains(item.Genre.Id)).ToList();
+            }
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -43,10 +94,53 @@ namespace WebApplication.Controllers
 
             var books = mapper.Map<List<BookDto>, List<BookViewModel>>(bookList);
             var genres = mapper.Map<List<GenreDto>, List<GenreViewModel>>(genreDto);
+            var authors = mapper.Map<List<AuthorDto>, List<AuthorViewModel>>(authorDtos);
+
+            var sort = sortBy.Split("_");
+
+            bool desc = sort[1].Equals("desc");
+
+            ViewData["authorsOrder"] = "asc";
+            ViewData["genreOrder"] = "asc";
+            ViewData["remainOrder"] = "asc";
+            ViewData["numberOrder"] = "asc";
+            ViewData["nameOrder"] = "asc";
+
+            ViewData["orderBy"] = sort[0];
+    
+            switch (sort[0])
+            {
+                case "authors":
+                    books = books.OrderBy(item => item.GetAuthors()).ToList();
+                    ViewData["authorsOrder"] = desc ? "asc" : "desc";
+                    break;
+                case "genre":
+                    books = books.OrderBy(item => item.Genre == null ? "" : item.Genre.Name).ToList();
+                    ViewData["genreOrder"] = desc ? "asc" : "desc";
+                    break;
+                case "remain":
+                    books = books.OrderBy(item => item.NumberOfCopiesCurrent).ToList();
+                    ViewData["remainOrder"] = desc ? "asc" : "desc";
+                    break;
+                case "number":
+                    books = books.OrderBy(item => item.NumberOfCopies).ToList();
+                    ViewData["numberOrder"] = desc ? "asc" : "desc";
+                    break;
+                default:
+                    books = books.OrderBy(item => item.Name).ToList();
+                    ViewData["nameOrder"] = desc ? "asc" : "desc";
+                    break;
+            }
+
+            if (desc)
+            {
+                books.Reverse();
+            }
 
             ViewData["Genres"] = genres;
-
-            return View(books);
+            ViewData["Authors"] = authors;
+            
+            return View(PaginatedList<BookViewModel>.CreatePage(books.AsQueryable(), pageNumber ?? 1, 10));
         }
 
         public IActionResult Book(int id)
@@ -117,8 +211,7 @@ namespace WebApplication.Controllers
 
             return RedirectPermanent("~/Books/");
         }
-
-
+        
         public IActionResult RemoveBook(int id)
         {
             _logger.LogInformation($"Removing user with id={id}");
