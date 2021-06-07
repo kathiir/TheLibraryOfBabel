@@ -1,8 +1,262 @@
 ﻿@model WebApplication.Utils.PaginatedList<WebApplication.Models.BookLoanRecordViewModel>
 
+
 @{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
+    ViewData["Title"] = "Book Loan Records Page";
 }
 
-<h2>title</h2>
+<div class="jumbotron">
+    <h1 class="display-3">Book Loan Records</h1>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="~/BookLoan/AddRecord" role="button">Add Record</a>
+    </p>
+</div>
+
+<form method="get">
+    <div class="my-4">
+        <h3>Filter</h3>
+        <div>
+            <label for="bookFilter" class="col-form-label float-left">Books:</label>
+            <div>
+                <select id="bookFilter" name="bookFilter" class="form-control" multiple>
+                    @foreach (var item in ViewData["Books"] as List<BookViewModel>)
+                    {
+                        @:<option value="@item.Id"
+                        if ((ViewData["bookFilt"] as int[]).Any(a => item.Id == a))
+                        {
+                            @:selected
+                        }
+                        @: >@item.Name</option>
+                    }
+                </select>
+            </div>
+            <label for="readerFilter" class="col-form-label float-left">Readers:</label>
+            <div>
+                <select id="readerFilter" name="readerFilter" class="form-control" multiple>
+                    @foreach (var item in ViewData["Readers"] as List<ReaderViewModel>)
+                    {
+                        @:<option value="@item.Id"
+                        if ((ViewData["readerFilt"] as int[]).Any(a => item.Id == a))
+                        {
+                            @:selected
+                        }
+                        @: >@item.Name</option>
+                    }
+                </select>
+            </div>
+            <label for="staffFilter" class="col-form-label float-left">Staff:</label>
+            <div>
+                <select id="staffFilter" name="staffFilter" class="form-control" multiple>
+                    @foreach (var item in ViewData["Staff"] as List<StaffViewModel>)
+                    {
+                        @:<option value="@item.Id"
+                        if ((ViewData["staffFilt"] as int[]).Any(a => item.Id == a))
+                        {
+                            @:selected
+                        }
+                        @: >@item.Name</option>
+                    }
+                </select>
+            </div>
+            <label for="filter" class="col-form-label float-left">Staff:</label>
+            <div>
+                <select id="filter" name="filter" class="form-control">
+                    <option value="0">
+                        All
+                    </option>
+                    <option value="1">
+                        Returned
+                    </option>
+                    <option value="2">
+                        Not returned
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+    <button type="submit" class="mt-2 btn btn-primary" value="newItem">Filter</button>
+
+</form>
+
+
+<table class="text-center table table-striped">
+    <thead class="thead-light">
+    <th scope="col">
+        <a asp-action="Index"
+           asp-route-sortBy="book_@ViewData["bookOrder"]"
+           asp-route-readerFilter="@ViewData["readerFiltString"]"
+           asp-route-bookFilter="@ViewData["bookFiltString"]"
+           asp-route-staffFilter="@ViewData["staffFiltString"]"
+           asp-route-pageNumber="@ViewData["page"]"
+           asp-route-filter="@ViewData["filter"]">
+            Book
+        </a>
+    </th>
+    <th scope="col">
+        <a asp-action="Index"
+           asp-route-sortBy="readers_@ViewData["readerOrder"]"
+           asp-route-readerFilter="@ViewData["readerFiltString"]"
+           asp-route-bookFilter="@ViewData["bookFiltString"]"
+           asp-route-staffFilter="@ViewData["staffFiltString"]"
+           asp-route-pageNumber="@ViewData["page"]"
+           asp-route-filter="@ViewData["filter"]">
+            Reader
+        </a>
+    </th>
+    <th scope="col">
+        <a asp-action="Index"
+           asp-route-sortBy="staff_@ViewData["staffOrder"]"
+           asp-route-readerFilter="@ViewData["readerFiltString"]"
+           asp-route-bookFilter="@ViewData["bookFiltString"]"
+           asp-route-staffFilter="@ViewData["staffFiltString"]"
+           asp-route-pageNumber="@ViewData["page"]"
+           asp-route-filter="@ViewData["filter"]">
+            Staff
+        </a>
+    </th>
+    <th scope="col">
+        <a asp-action="Index"
+           asp-route-sortBy="borrow_@ViewData["borrowOrder"]"
+           asp-route-readerFilter="@ViewData["readerFiltString"]"
+           asp-route-bookFilter="@ViewData["bookFiltString"]"
+           asp-route-staffFilter="@ViewData["staffFiltString"]"
+           asp-route-pageNumber="@ViewData["page"]"
+           asp-route-filter="@ViewData["filter"]">
+            Borrow Date
+        </a>
+    </th>
+    <th scope="col">
+        <a asp-action="Index"
+           asp-route-sortBy="due_@ViewData["dueOrder"]"
+           asp-route-readerFilter="@ViewData["readerFiltString"]"
+           asp-route-bookFilter="@ViewData["bookFiltString"]"
+           asp-route-staffFilter="@ViewData["staffFiltString"]"
+           asp-route-pageNumber="@ViewData["page"]"
+           asp-route-filter="@ViewData["filter"]">
+            Due Date
+        </a>
+    </th>
+    <th scope="col">
+        <a asp-action="Index"
+           asp-route-sortBy="return_@ViewData["returnOrder"]"
+           asp-route-readerFilter="@ViewData["readerFiltString"]"
+           asp-route-bookFilter="@ViewData["bookFiltString"]"
+           asp-route-staffFilter="@ViewData["staffFiltString"]"
+           asp-route-filter="@ViewData["filter"]"
+           asp-route-pageNumber="@ViewData["page"]">
+            Return Date
+        </a>
+    </th>
+    <th scope="col">
+        Prolong
+    </th>
+    <th scope="col">
+        Return
+    </th>
+    <th scope="col">
+        Delete
+    </th>
+    </thead>
+    <tbody>
+
+    @foreach (var record in ViewData.Model)
+    {
+        <tr class="rows">
+            <td>
+                @record.Book.Name
+            </td>
+            <td>
+                @record.Reader.Name
+            </td>
+            <td>
+                @record.Staff?.Name
+            </td>
+            <td>
+                @record.BorrowDate.ToString("d")
+            </td>
+            <td>
+                @record.DueDate.ToString("d")
+            </td>
+            <td>
+                @record.ReturnDate?.ToString("d")
+            </td>
+            <td>
+                <a href="~/BookLoan/ProlongRecord/?id=@record.Id" class="btn btn-outline-danger">
+                    Prolong
+                </a>
+            </td>
+            <td>
+                <a href="~/BookLoan/ReturnRecord/?id=@record.Id" class="btn btn-outline-danger">
+                    Return
+                </a>
+            </td>
+            <td>
+                <a href="~/BookLoan/RemoveRecord/?id=@record.Id" class="btn btn-outline-danger">
+                    Remove
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortBy="return_@ViewData["returnOrder"]"
+   asp-route-readerFilter="@ViewData["readerFiltString"]"
+   asp-route-bookFilter="@ViewData["bookFiltString"]"
+   asp-route-staffFilter="@ViewData["staffFiltString"]"
+   asp-route-filter="@ViewData["filter"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortBy="return_@ViewData["returnOrder"]"
+   asp-route-readerFilter="@ViewData["readerFiltString"]"
+   asp-route-bookFilter="@ViewData["bookFiltString"]"
+   asp-route-staffFilter="@ViewData["staffFiltString"]"
+   asp-route-filter="@ViewData["filter"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#readerFilter').select2({
+                multiple: true
+            });
+        });
+    </script>
+
+    <script>
+            $(document).ready(function () {
+                $('#bookFilter').select2({
+                    multiple: true
+                });
+            });
+        </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#staffFilter').select2({
+                multiple: true
+            });
+        });
+    </script>
+    
+    <script>
+    $(document).ready(function () {
+        $("#filter").val(@ViewData["filter"]);
+            });
+    </script>
+}

@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Book Loan Records";
+}
+
+<div class="jumbotron">
+    <h1 class="display-3">Add Book Loan Records</h1>
+    <hr class="my-4">
+</div>
+
+<div>
+    <form method="post">
+       
+        <label for="book" class="col-form-label float-left">Genre:</label>
+        <div>
+            <select id="book" name="book" class="form-control">
+                @foreach (var item in ViewData["Books"] as List<BookViewModel>)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+        
+        <label for="reader" class="col-form-label float-left">Genre:</label>
+        <div>
+            <select id="reader" name="reader" class="form-control">
+                @foreach (var item in ViewData["Readers"] as List<ReaderViewModel>)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+        
+        <label for="staff" class="col-form-label float-left">Genre:</label>
+        <div>
+            <select id="staff" name="staff" class="form-control">
+                @foreach (var item in ViewData["Staff"] as List<StaffViewModel>)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+        
+        <button type="submit" class="mt-2 btn btn-primary" value="newItem">Save</button>
+
+    </form>
+</div>
+
+@section Scripts
+{
+    <script>
+    $(document).ready(function () {
+          $('#reader').select2({
+                multiple: false
+                });
+    });
+    </script>
+    <script>
+    $(document).ready(function () {
+          $('#staff').select2({
+                multiple: false
+                });
+    });
+    </script>
+    <script>
+        $(document).ready(function () {
+              $('#book').select2({
+                    multiple: false
+                    });
+        });
+    </script>
+    
+}

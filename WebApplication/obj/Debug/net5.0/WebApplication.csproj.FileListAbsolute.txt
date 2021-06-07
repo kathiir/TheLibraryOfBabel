@@ -71,3 +71,7 @@ C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\R
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Genres\Genre.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Readers\Index.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Readers\Reader.cshtml.g.cs
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\BookLoan\AddRecord.cshtml.g.cs
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\BookLoan\Index.cshtml.g.cs
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Staff\Index.cshtml.g.cs
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Staff\Staff.cshtml.g.cs

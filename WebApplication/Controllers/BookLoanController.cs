@@ -68,6 +68,8 @@ namespace WebApplication.Controllers
             var readerFilt = Array.ConvertAll(readerFilter, s => int.Parse(s));
             var staffFilt = Array.ConvertAll(staffFilter, s => int.Parse(s));
 
+            ViewData["filter"] = filter;
+
 
             ViewData["bookFilt"] = bookFilt;
             ViewData["readerFilt"] = readerFilt;
@@ -92,6 +94,15 @@ namespace WebApplication.Controllers
             if (!staffFilt.IsNullOrEmpty())
             {
                 records = records.Where(item => staffFilt.Contains(item.Id)).ToList();
+            }
+
+            if (filter == 1)
+            {
+                records = records.Where(item => item.ReturnDate != null).ToList();
+            }
+            else if (filter == 2)
+            {
+                records = records.Where(item => item.ReturnDate == null).ToList();
             }
 
             var config = new MapperConfiguration(cfg =>
@@ -175,24 +186,75 @@ namespace WebApplication.Controllers
             return View(PaginatedList<BookLoanRecordViewModel>.CreatePage(recordList.AsQueryable(), pageNumber ?? 1, 10));
         }
         
+        public IActionResult AddRecord()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<BookLoanRecordDto, BookLoanRecordViewModel>();
+                cfg.CreateMap<BookDto, BookViewModel>();
+                cfg.CreateMap<AuthorDto, AuthorViewModel>();
+                cfg.CreateMap<GenreDto, GenreViewModel>();
+                cfg.CreateMap<ReaderDto, ReaderViewModel>();
+                cfg.CreateMap<StaffDto, StaffViewModel>();
+            });
+            // config.AssertConfigurationIsValid();
+
+            var mapper = config.CreateMapper();
+
+            var books = _bookService.GetAll().Where(item => item.NumberOfCopiesCurrent > 0).ToList();
+            var readers = _readerService.GetAll();
+            var staff = _staffService.GetAll();
+            
+            ViewData["Readers"] = mapper.Map<List<ReaderDto>, List<ReaderViewModel>>(readers);
+            ViewData["Books"] = mapper.Map<List<BookDto>, List<BookViewModel>>(books);
+            ViewData["Staff"] = mapper.Map<List<StaffDto>, List<StaffViewModel>>(staff);
+            
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult AddRecord(int reader, int staff, int book)
+        {
+            var bookDto = _bookService.Get(book);
+            if (bookDto != null && bookDto.NumberOfCopiesCurrent > 0 && reader != 0 && book != 0)
+            {
+                var record = new BookLoanRecordDto();
+                record.Book = bookDto;
+                record.Reader = _readerService.Get(reader);
+                if (staff != 0)
+                {
+                    record.Staff = _staffService.Get(staff);
+                }
+                record.BorrowDate = DateTime.Now;
+                record.DueDate = record.BorrowDate.AddDays(7);
+                
+                _bookLoanRecordService.AddOrUpdate(record);
+                // bookDto.NumberOfCopiesCurrent--;
+                _bookService.UpdateCount(bookDto.Id);
+            }
+            
+            return RedirectPermanent("~/BookLoan/");
+        }
+
+        
         public IActionResult RemoveRecord(int id)
         {
             _logger.LogInformation($"Removing record with id={id}");
-            _bookService.Delete(id);
+            _bookLoanRecordService.Delete(id);
             return RedirectPermanent("~/BookLoan/");
         }
         
         public IActionResult ReturnRecord(int id)
         {
             _logger.LogInformation($"Returning record with id={id}");
-            _bookService.Delete(id);
+            _bookLoanRecordService.Return(id);
             return RedirectPermanent("~/BookLoan/");
         }
         
         public IActionResult ProlongRecord(int id)
         {
             _logger.LogInformation($"Prolonging record with id={id}");
-            _bookService.Delete(id);
+            _bookLoanRecordService.AddTime(id);
             return RedirectPermanent("~/BookLoan/");
         }
     }

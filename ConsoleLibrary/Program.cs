@@ -107,50 +107,50 @@ namespace ConsoleLibrary
                 //     Console.WriteLine(item.Authors);
                 // }
 
-                IRepository<Book> repository = new Repository<Book>(db);
-                IRepository<Author> repositoryA = new Repository<Author>(db);
-                IRepository<Genre> repositoryg = new Repository<Genre>(db);
+                // IRepository<Book> repository = new Repository<Book>(db);
+                // IRepository<Author> repositoryA = new Repository<Author>(db);
+                // IRepository<Genre> repositoryg = new Repository<Genre>(db);
 
                 // repository.Delete();
 
-                Author author = new Author {Name = "AAAA132123A"};
+                // Author author = new Author {Name = "AAAA132123A"};
                 
-                Book book = new Book {Name = "asd"};
+                // Book book = new Book {Name = "asd"};
                 
-                book.Authors.Add(author);
+                // book.Authors.Add(author);
 
-                repository.CreateOrUpdate(book);
+                // repository.CreateOrUpdate(book);
 
-                Console.WriteLine("-------Books----------");
+                // Console.WriteLine("-------Books----------");
                 
-                foreach (var item in repository.GetAll())
-                {
-                    Console.WriteLine(item.Name);
-                    foreach (var itemAuthor in item.Authors)
-                    {
-                        Console.WriteLine(itemAuthor.Name);
-                    }
-                }
+                // foreach (var item in repository.GetAll())
+                // {
+                    // Console.WriteLine(item.Name);
+                    // foreach (var itemAuthor in item.Authors)
+                    // {
+                        // Console.WriteLine(itemAuthor.Name);
+                    // }
+                // }
 
-                Console.WriteLine("-------New----------");
+                // Console.WriteLine("-------New----------");
 
-                Author author2 = new Author {Name = "bbb"};
+                // Author author2 = new Author {Name = "bbb"};
 
                 
-                book.Name = "dfsdf";
+                // book.Name = "dfsdf";
                 
-                book.Authors.Add(author2);
+                // book.Authors.Add(author2);
 
-                repository.CreateOrUpdate(book);
+                // repository.CreateOrUpdate(book);
                 
-                foreach (var item in repository.GetAll())
-                {
-                    Console.WriteLine(item.Name);
-                    foreach (var itemAuthor in item.Authors)
-                    {
-                        Console.WriteLine(itemAuthor.Name);
-                    }
-                }
+                // foreach (var item in repository.GetAll())
+                // {
+                    // Console.WriteLine(item.Name);
+                    // foreach (var itemAuthor in item.Authors)
+                    // {
+                        // Console.WriteLine(itemAuthor.Name);
+                    // }
+                // }
             }
         }
     }
