@@ -113,7 +113,7 @@
 
     @foreach (var book in ViewData.Model)
     {
-        <tr data-genre="@book.Genre?.Id" class="rows">
+        <tr class="rows">
             <td>
                 <a asp-route-id="@book.Id" asp-action="Book">
                     @book.Name

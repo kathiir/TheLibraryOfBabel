@@ -47,6 +47,7 @@ namespace WebApplication.Controllers
                 sortBy = "name_asc";
             }
 
+
             if (genreFilter.Length == 1)
             {
                 genreFilter = genreFilter[0].Split(",");
@@ -214,7 +215,7 @@ namespace WebApplication.Controllers
         
         public IActionResult RemoveBook(int id)
         {
-            _logger.LogInformation($"Removing user with id={id}");
+            _logger.LogInformation($"Removing book with id={id}");
             _bookService.Delete(id);
             return RedirectPermanent("~/Books/");
         }

@@ -8,5 +8,9 @@ namespace WebApplication.Models
         public string Name { get; set; }
         public List<BookLoanRecordViewModel> BookLoanRecords { get; set; }
 
+        public ReaderViewModel()
+        {
+            BookLoanRecords = new List<BookLoanRecordViewModel>();
+        }
     }
 }

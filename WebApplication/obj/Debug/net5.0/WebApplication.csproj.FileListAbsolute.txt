@@ -63,14 +63,12 @@ C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\bin\Debug\net5.0\L
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\bin\Debug\net5.0\Library.DAL.dll
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\bin\Debug\net5.0\Library.BLL.pdb
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\bin\Debug\net5.0\Library.DAL.pdb
-C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Authors\Add.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Authors\Author.cshtml.g.cs
-C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Authors\Book.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Authors\Index.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Books\Book.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Books\Index.cshtml.g.cs
-C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Genre\Index.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Users\Index.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Users\Staff.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Users\User.cshtml.g.cs
 C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Users\UserList.cshtml.g.cs
+C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication\obj\Debug\net5.0\Razor\Views\Genres\Index.cshtml.g.cs

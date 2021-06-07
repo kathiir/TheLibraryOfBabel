@@ -1003,3 +1003,48 @@ Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
 Hosting environment: Development
 Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Adding new author
+Removing user with id=2
+Removing user with id=1
+Adding new author
+Removing book with id=5
+Removing book with id=11
+Removing book with id=4
+Removing book with id=7
+Removing book with id=8
+Removing book with id=6
+Removing book with id=10
+Removing book with id=12
+Removing book with id=3
+Removing book with id=9

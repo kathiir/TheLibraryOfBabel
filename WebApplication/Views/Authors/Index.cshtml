@@ -1,8 +1,89 @@
-﻿@model System.Collections.Generic.List<WebApplication.Models.AuthorViewModel>
+﻿@model WebApplication.Utils.PaginatedList<WebApplication.Models.AuthorViewModel>
 
 @{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
+    ViewData["Title"] = "Authors Page";
 }
 
-<h2>title</h2>
+<div class="jumbotron">
+    <h1 class="display-3">Authors</h1>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="~/Authors/Author/" role="button">Add Author</a>
+    </p>
+</div>
+
+<form method="get">
+    <div>
+        <input class="form-control mb-4" id="search" name="search" type="text" placeholder="Search.." value="@ViewData["searchFilt"]">
+    </div>
+</form>
+
+
+<table class="text-center table table-striped">
+    <thead class="thead-light">
+    <th scope="col">
+        <a asp-action="Index"
+           asp-route-sortBy="name_@ViewData["nameOrder"]"
+           asp-route-pageNumber="@ViewData["page"]"
+           asp-route-search="@ViewData["searchFilt"]">
+            Name
+        </a>
+    </th>
+    <th scope="col" class="col-2">
+        <a asp-action="Index"
+           asp-route-sortBy="number_@ViewData["numberOrder"]"
+           asp-route-pageNumber="@ViewData["page"]"
+           asp-route-search="@ViewData["searchFilt"]">
+        Number Of Books
+        </a>
+    </th>
+    <th scope="col" class="col-2">
+        Delete
+    </th>
+    </thead>
+    <tbody>
+
+    @foreach (var item in ViewData.Model)
+    {
+        <tr class="rows">
+            <td>
+                <a asp-route-id="@item.Id" asp-action="Author">
+                    @item.Name
+                </a>
+            </td>
+            <td>
+                @item.Books.Count
+            </td>
+            <td>
+                <a href="~/Authors/RemoveAuthor/?id=@item.Id" class="btn btn-outline-danger">
+                    Remove
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortBy="@ViewData["orderBy"]_@ViewData["genreOrder"]"
+   asp-route-authorsFilter="@ViewData["authorFiltString"]"
+   asp-route-genreFilter="@ViewData["genreFiltString"]"
+   asp-route-search="@ViewData["searchFilt"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortBy="@ViewData["orderBy"]_@ViewData["genreOrder"]"
+   asp-route-authorsFilter="@ViewData["authorFiltString"]"
+   asp-route-genreFilter="@ViewData["genreFiltString"]"
+   asp-route-search="@ViewData["searchFilt"]"   
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
