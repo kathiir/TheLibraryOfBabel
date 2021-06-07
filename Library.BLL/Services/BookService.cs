@@ -114,7 +114,17 @@ namespace Library.BLL.Services
         public int GetLoanedCopiesCount(int bookId)
         {
             return _bookLoanRecordRepository.Count(record =>
-                record.Book.Id == bookId && record.ReturnDate < DateTime.Now);
+                record.Book.Id == bookId && !record.ReturnDate.HasValue);
+        }
+
+        public void UpdateCount(int id)
+        {
+            var book = Get(id);
+            if (book != null)
+            {
+                book.NumberOfCopiesCurrent = book.NumberOfCopies - GetLoanedCopiesCount(id);
+                AddOrUpdate(book);
+            }
         }
     }
 }

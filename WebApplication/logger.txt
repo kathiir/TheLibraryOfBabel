@@ -1078,3 +1078,8 @@ Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
 Adding new reader
 Removing reader with id=1
 Adding new reader
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication

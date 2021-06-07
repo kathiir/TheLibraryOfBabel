@@ -7,7 +7,7 @@ namespace Library.BLL.Interfaces
     public interface IBookService : IBaseService<BookDto>
     {
         int GetLoanedCopiesCount(int bookId);
-
+        void UpdateCount(int id);
 
 
     }

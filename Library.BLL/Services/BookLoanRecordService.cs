@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using AutoMapper;
 using Library.BLL.DTO;
@@ -14,15 +15,17 @@ namespace Library.BLL.Services
         private readonly IRepository<Book> _bookRepository;
         private readonly IRepository<Reader> _readerRepository;
         private readonly IRepository<Staff> _staffRepository;
+        private readonly IBookService _bookService;
 
         public BookLoanRecordService(IRepository<BookLoanRecord> bookLoanRecordRepository,
             IRepository<Book> bookRepository, IRepository<Reader> readerRepository,
-            IRepository<Staff> staffRepository)
+            IRepository<Staff> staffRepository, IBookService bookService)
         {
             _bookLoanRecordRepository = bookLoanRecordRepository;
             _bookRepository = bookRepository;
             _readerRepository = readerRepository;
             _staffRepository = staffRepository;
+            _bookService = bookService;
         }
 
         public void AddOrUpdate(BookLoanRecordDto dto)
@@ -97,7 +100,33 @@ namespace Library.BLL.Services
 
         public void Delete(int id)
         {
-            _bookLoanRecordRepository.Delete(id);
+            var record = Get(id);
+            if (record != null)
+            {
+                _bookService.UpdateCount(record.Book.Id);
+                _bookLoanRecordRepository.Delete(id);
+            }
+        }
+
+        public void Return(int id)
+        {
+            var record = _bookLoanRecordRepository.Get(id);
+            if (record != null && !record.ReturnDate.HasValue)
+            {
+                _bookService.UpdateCount(record.Book.Id);
+                record.ReturnDate = DateTime.Now;
+                _bookLoanRecordRepository.CreateOrUpdate(record);
+            }
+        }
+
+        public void AddTime(int id)
+        {
+            var record = _bookLoanRecordRepository.Get(id);
+            if (record != null && !record.ReturnDate.HasValue)
+            {
+                record.DueDate = record.DueDate.AddDays(7);
+                _bookLoanRecordRepository.CreateOrUpdate(record);
+            }
         }
     }
 }

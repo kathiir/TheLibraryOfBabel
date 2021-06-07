@@ -14,6 +14,6 @@ namespace Library.DAL.Entities
         public DateTime BorrowDate { get; set; }
         [Required]
         public DateTime DueDate { get; set; }
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
     }
 }
