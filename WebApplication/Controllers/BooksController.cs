@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using Castle.Core.Internal;
+using ClosedXML.Excel;
 using Library.BLL.DTO;
 using Library.BLL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +40,8 @@ namespace WebApplication.Controllers
             string search,
             int? pageNumber) 
         {
+            _logger.LogInformation($"Retrieving Books, page={pageNumber}");
+
             var bookList = _bookService.GetAll();
             var genreDto = _genreService.GetAll();
             var authorDtos = _authorService.GetAll();
@@ -186,13 +190,21 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult Book(BookViewModel bookViewModel, string[] authors, int genre)
         {
+            BookDto book;
             if (bookViewModel.Id == 0)
             {
                 _logger.LogInformation($"Adding new book");
                 bookViewModel.NumberOfCopiesCurrent = bookViewModel.NumberOfCopies;
             }
             else
-                _logger.LogInformation($"Updating item with id={bookViewModel.Id}");
+            {
+                book = _bookService.Get(bookViewModel.Id);
+                if (book != null)
+                {
+                    bookViewModel.NumberOfCopiesCurrent = bookViewModel.NumberOfCopies - (book.NumberOfCopies - book.NumberOfCopiesCurrent);
+                }
+                _logger.LogInformation($"Updating book with id={bookViewModel.Id}");
+            }
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -208,14 +220,14 @@ namespace WebApplication.Controllers
             bookDto.Genre = _genreService.Get(genre);
 
             bookDto.Authors = _authorService.GetByNamesOrCreate(authors);
-
-            int count = _bookService.GetLoanedCopiesCount(bookDto.Id);
-            bookDto.NumberOfCopies = bookDto.NumberOfCopies >= count
+            
+            // int count = _bookService.GetLoanedCopiesCount(bookDto.Id);
+            bookDto.NumberOfCopies = bookDto.NumberOfCopies >= bookDto.NumberOfCopiesCurrent
                 ? bookDto.NumberOfCopies
-                : count;
-
-            bookDto.NumberOfCopiesCurrent = bookDto.NumberOfCopies - count;
-
+                : bookDto.NumberOfCopiesCurrent;
+            
+            // _bookService.AddOrUpdate(bookDto);
+            
             _bookService.AddOrUpdate(bookDto);
 
             return RedirectPermanent("~/Books/");
@@ -226,6 +238,43 @@ namespace WebApplication.Controllers
             _logger.LogInformation($"Removing book with id={id}");
             _bookService.Delete(id);
             return RedirectPermanent("~/Books/");
+        }
+        
+        public ActionResult Download()
+        {
+            using var workbook = new XLWorkbook();
+
+            var items = _bookService.GetAll();
+
+            _logger.LogInformation($"Saving Excel file for Books");
+
+            var worksheet = workbook.Worksheets.Add("Items");
+            worksheet.Cell("A1").Value = "Id";
+            worksheet.Cell("B1").Value = "Name";
+            worksheet.Cell("C1").Value = "Authors";
+            worksheet.Cell("D1").Value = "Genre";
+
+            int row = 1;
+            foreach (var item in items)
+            {
+                var rowObj = worksheet.Row(++row);
+                rowObj.Cell(1).Value = item.Id;
+                rowObj.Cell(2).Value = item.Name;
+                rowObj.Cell(3).Value = String.Join(",", item.Authors.Select(cat => cat.Name).ToArray());
+                rowObj.Cell(4).Value = item.Genre?.Name;
+            }
+
+            var cd = new System.Net.Mime.ContentDisposition
+            {
+                FileName = "Books.xlsx",
+                Inline = false, 
+            };
+            Response.Headers.Add("Content-Disposition", cd.ToString());
+            using (MemoryStream stream = new MemoryStream())
+            {
+                workbook.SaveAs(stream);
+                return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Books.xlsx");
+            }
         }
     }
 }

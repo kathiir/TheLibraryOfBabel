@@ -2,7 +2,10 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<p class="lead">There is yet <span class="text-primary">@ViewData["ToReturn"]</span> books to return</p>
+<p class="lead"><span class="text-primary">@ViewData["PopularBook"]</span> is seems to be the most popular book</p>
+<p class="lead"><span class="text-primary">@ViewData["Reading"]</span> reads a lot, like REALLY</p>
+<p class="lead"><span class="text-primary">@ViewData["Working"]</span> works too...</p>
+<p class="lead">Some authors like <span class="text-primary">@ViewData["Writing"]</span> don't know that sleep exists</p>
+<p class="lead">Maybe people need to read less <span class="text-primary">@ViewData["Genre"]</span>, there is other genres too</p>
+

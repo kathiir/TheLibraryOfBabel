@@ -65,8 +65,12 @@ namespace Library.BLL.Services
                     book.Authors.Add(author);
                 }
             });
-
+            // if (dto.Id != 0)
+            // {
+                // UpdateCount(dto.Id);
+            // }
             _bookRepository.CreateOrUpdate(book);
+
         }
 
         public BookDto Get(int id)
@@ -108,6 +112,15 @@ namespace Library.BLL.Services
 
         public void Delete(int id)
         {
+            var records = _bookLoanRecordRepository.GetAll().ToList();
+
+            records = records.Where(item => item.Book.Id == id).ToList();
+            
+            foreach (var bookLoanRecord in records)
+            {
+                _bookLoanRecordRepository.Delete(bookLoanRecord.Id);
+            }
+            
             _bookRepository.Delete(id);
         }
 
@@ -123,6 +136,36 @@ namespace Library.BLL.Services
             if (book != null)
             {
                 book.NumberOfCopiesCurrent = book.NumberOfCopies - GetLoanedCopiesCount(id);
+                // AddOrUpdate(book);
+            }
+        }
+        
+        public void UpdateCountAndSave(int id)
+        {
+            var book = Get(id);
+            if (book != null)
+            {
+                book.NumberOfCopiesCurrent = book.NumberOfCopies - GetLoanedCopiesCount(id);
+                AddOrUpdate(book);
+            }
+        }
+        
+        public void UpCount(int id)
+        {
+            var book = Get(id);
+            if (book != null)
+            {
+                book.NumberOfCopiesCurrent++;
+                AddOrUpdate(book);
+            }
+        }
+        
+        public void DownCount(int id)
+        {
+            var book = Get(id);
+            if (book != null)
+            {
+                book.NumberOfCopiesCurrent--;
                 AddOrUpdate(book);
             }
         }

@@ -8,6 +8,9 @@ namespace Library.BLL.Interfaces
     {
         int GetLoanedCopiesCount(int bookId);
         void UpdateCount(int id);
+        void UpdateCountAndSave(int id);
+        public void UpCount(int id);
+        public void DownCount(int id);
 
 
     }

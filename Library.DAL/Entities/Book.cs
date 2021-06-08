@@ -9,7 +9,7 @@ namespace Library.DAL.Entities
         public int NumberOfCopies { get; set; }
         public int NumberOfCopiesCurrent { get; set; }
         public virtual Genre Genre { get; set; }
-
+        
         public Book()
         {
             Authors = new List<Author>();

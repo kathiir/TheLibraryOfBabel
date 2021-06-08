@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using AutoMapper;
 using Library.BLL.DTO;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApplication.Models;
 using Castle.Core.Internal;
+using ClosedXML.Excel;
 using WebApplication.Utils;
 
 namespace WebApplication.Controllers
@@ -27,6 +29,9 @@ namespace WebApplication.Controllers
             string search,
             int? pageNumber) 
         {
+            _logger.LogInformation($"Retrieving Readers, page={pageNumber}");
+
+            
             var readerList = _readerService.GetAll();
 
             if (sortBy.IsNullOrEmpty())
@@ -141,6 +146,39 @@ namespace WebApplication.Controllers
             _logger.LogInformation($"Removing reader with id={id}");
             _readerService.Delete(id);
             return RedirectPermanent("~/Readers/");
+        }
+        
+        public ActionResult Download()
+        {
+            using var workbook = new XLWorkbook();
+
+            var items = _readerService.GetAll();
+
+            _logger.LogInformation($"Saving Excel file for Readers");
+
+            var worksheet = workbook.Worksheets.Add("Items");
+            worksheet.Cell("A1").Value = "Id";
+            worksheet.Cell("B1").Value = "Name";
+
+            int row = 1;
+            foreach (var item in items)
+            {
+                var rowObj = worksheet.Row(++row);
+                rowObj.Cell(1).Value = item.Id;
+                rowObj.Cell(2).Value = item.Name;
+            }
+
+            var cd = new System.Net.Mime.ContentDisposition
+            {
+                FileName = "Readers.xlsx",
+                Inline = false, 
+            };
+            Response.Headers.Add("Content-Disposition", cd.ToString());
+            using (MemoryStream stream = new MemoryStream())
+            {
+                workbook.SaveAs(stream);
+                return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Readers.xlsx");
+            }
         }
     }
 }

@@ -10,7 +10,7 @@
 <div>
     <form method="post">
        
-        <label for="book" class="col-form-label float-left">Genre:</label>
+        <label for="book" class="col-form-label float-left">Book:</label>
         <div>
             <select id="book" name="book" class="form-control">
                 @foreach (var item in ViewData["Books"] as List<BookViewModel>)
@@ -20,7 +20,7 @@
             </select>
         </div>
         
-        <label for="reader" class="col-form-label float-left">Genre:</label>
+        <label for="reader" class="col-form-label float-left">Reader:</label>
         <div>
             <select id="reader" name="reader" class="form-control">
                 @foreach (var item in ViewData["Readers"] as List<ReaderViewModel>)
@@ -30,7 +30,7 @@
             </select>
         </div>
         
-        <label for="staff" class="col-form-label float-left">Genre:</label>
+        <label for="staff" class="col-form-label float-left">Staff:</label>
         <div>
             <select id="staff" name="staff" class="form-control">
                 @foreach (var item in ViewData["Staff"] as List<StaffViewModel>)

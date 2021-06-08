@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using AutoMapper;
 using Library.BLL.DTO;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using WebApplication.Models;
 using WebApplication.Utils;
 using Castle.Core.Internal;
+using ClosedXML.Excel;
 using Library.BLL.Services;
 
 namespace WebApplication.Controllers
@@ -31,6 +33,8 @@ namespace WebApplication.Controllers
             string search,
             int? pageNumber) 
         {
+            _logger.LogInformation($"Retrieving Authors, page={ pageNumber }, search={search}, sort={sortBy}");
+
             var authorList = _authorService.GetAll();
 
             if (sortBy.IsNullOrEmpty())
@@ -95,6 +99,8 @@ namespace WebApplication.Controllers
         
         public IActionResult Author(int id)
         {
+            _logger.LogInformation($"Adding or editing Author with id ={id}");
+
             var bookDtos = _bookService.GetAll();
 
             var config = new MapperConfiguration(cfg =>
@@ -150,9 +156,44 @@ namespace WebApplication.Controllers
         
         public IActionResult RemoveAuthor(int id)
         {
-            _logger.LogInformation($"Removing user with id={id}");
+            _logger.LogInformation($"Removing author with id={id}");
             _authorService.Delete(id);
             return RedirectPermanent("~/Authors/");
+        }
+        
+        public ActionResult Download()
+        {
+            using var workbook = new XLWorkbook();
+
+            var authors = _authorService.GetAll();
+
+            _logger.LogInformation($"Saving Excel file for Authors");
+
+            var worksheet = workbook.Worksheets.Add("Items");
+            worksheet.Cell("A1").Value = "Id";
+            worksheet.Cell("B1").Value = "Author Name";
+            worksheet.Cell("C1").Value = "Books";
+
+            int row = 1;
+            foreach (var item in authors)
+            {
+                var rowObj = worksheet.Row(++row);
+                rowObj.Cell(1).Value = item.Id;
+                rowObj.Cell(2).Value = item.Name;
+                rowObj.Cell(3).Value = String.Join(",", item.Books.Select(cat => cat.Name).ToArray());
+            }
+
+            var cd = new System.Net.Mime.ContentDisposition
+            {
+                FileName = "Authors.xlsx",
+                Inline = false, 
+            };
+            Response.Headers.Add("Content-Disposition", cd.ToString());
+            using (MemoryStream stream = new MemoryStream())
+            {
+                workbook.SaveAs(stream);
+                return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Authors.xlsx");
+            }
         }
         
     }

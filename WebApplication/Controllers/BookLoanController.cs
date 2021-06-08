@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using AutoMapper;
 using Library.BLL.DTO;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using WebApplication.Models;
 using WebApplication.Utils;
 using Castle.Core.Internal;
+using ClosedXML.Excel;
 using Library.DAL.Entities;
 
 namespace WebApplication.Controllers
@@ -40,6 +42,8 @@ namespace WebApplication.Controllers
             string[] staffFilter,
             int? pageNumber) 
         {
+            _logger.LogInformation($"Retrieving Records, page={pageNumber}");
+
             var bookDtos = _bookService.GetAll();
             var readerDtos = _readerService.GetAll();
             var staffDtos = _staffService.GetAll();
@@ -215,6 +219,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult AddRecord(int reader, int staff, int book)
         {
+
             var bookDto = _bookService.Get(book);
             if (bookDto != null && bookDto.NumberOfCopiesCurrent > 0 && reader != 0 && book != 0)
             {
@@ -229,8 +234,10 @@ namespace WebApplication.Controllers
                 record.DueDate = record.BorrowDate.AddDays(7);
                 
                 _bookLoanRecordService.AddOrUpdate(record);
-                // bookDto.NumberOfCopiesCurrent--;
-                _bookService.UpdateCount(bookDto.Id);
+                bookDto.NumberOfCopiesCurrent--;
+                _bookService.AddOrUpdate(bookDto);
+                _logger.LogInformation($"Adding record for reader={reader}, staff={staff}, book={book}");
+
             }
             
             return RedirectPermanent("~/BookLoan/");
@@ -256,6 +263,49 @@ namespace WebApplication.Controllers
             _logger.LogInformation($"Prolonging record with id={id}");
             _bookLoanRecordService.AddTime(id);
             return RedirectPermanent("~/BookLoan/");
+        }
+        
+        public ActionResult Download()
+        {
+            using var workbook = new XLWorkbook();
+
+            var items = _bookLoanRecordService.GetAll();
+
+            _logger.LogInformation($"Saving Excel file for Records");
+
+            var worksheet = workbook.Worksheets.Add("Items");
+            worksheet.Cell("A1").Value = "Id";
+            worksheet.Cell("B1").Value = "Book";
+            worksheet.Cell("C1").Value = "Reader";
+            worksheet.Cell("D1").Value = "Staff";
+            worksheet.Cell("E1").Value = "Borrow Date";
+            worksheet.Cell("F1").Value = "Due Date";
+            worksheet.Cell("G1").Value = "Return Date";
+
+            int row = 1;
+            foreach (var item in items)
+            {
+                var rowObj = worksheet.Row(++row);
+                rowObj.Cell(1).Value = item.Id;
+                rowObj.Cell(2).Value = item.Book.Name;
+                rowObj.Cell(3).Value = item.Reader.Name;
+                rowObj.Cell(4).Value = item.Staff?.Name;
+                rowObj.Cell(5).Value = item.BorrowDate;
+                rowObj.Cell(6).Value = item.DueDate;
+                rowObj.Cell(7).Value = item.ReturnDate;
+            }
+
+            var cd = new System.Net.Mime.ContentDisposition
+            {
+                FileName = "Records.xlsx",
+                Inline = false, 
+            };
+            Response.Headers.Add("Content-Disposition", cd.ToString());
+            using (MemoryStream stream = new MemoryStream())
+            {
+                workbook.SaveAs(stream);
+                return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Records.xlsx");
+            }
         }
     }
 }

@@ -48,6 +48,7 @@ namespace Library.BLL.Services
 
             bookLoanRecord.Book = _bookRepository.Get(dto.Book.Id);
             bookLoanRecord.Reader = _readerRepository.Get(dto.Reader.Id);
+            
             if (dto.Staff != null)
             {
                 bookLoanRecord.Staff = _staffRepository.Get(dto.Staff.Id);
@@ -103,8 +104,11 @@ namespace Library.BLL.Services
             var record = Get(id);
             if (record != null)
             {
-                _bookService.UpdateCount(record.Book.Id);
                 _bookLoanRecordRepository.Delete(id);
+                if (!record.ReturnDate.HasValue)
+                {
+                    _bookService.UpCount(record.Book.Id);
+                }
             }
         }
 
@@ -113,9 +117,10 @@ namespace Library.BLL.Services
             var record = _bookLoanRecordRepository.Get(id);
             if (record != null && !record.ReturnDate.HasValue)
             {
-                _bookService.UpdateCount(record.Book.Id);
                 record.ReturnDate = DateTime.Now;
                 _bookLoanRecordRepository.CreateOrUpdate(record);
+                _bookService.UpCount(record.Book.Id);
+
             }
         }
 

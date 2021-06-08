@@ -10,6 +10,9 @@
     <p class="lead">
         <a class="btn btn-primary btn-lg" href="~/Readers/Reader/" role="button">Add Readers</a>
     </p>
+    <p class="lead">
+            <a class="btn btn-primary btn-lg" href="~/Readers/Download" role="button">Download</a>
+        </p>
 </div>
 
 <form method="get">
@@ -51,7 +54,7 @@
                 </a>
             </td>
             <td>
-                @item.BookLoanRecords.Count
+                @item.BookLoanRecords.Count(it => !it.ReturnDate.HasValue)
             </td>
             <td>
                 <a href="~/Readers/RemoveReader/?id=@item.Id" class="btn btn-outline-danger">

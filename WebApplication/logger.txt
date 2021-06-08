@@ -1204,3 +1204,604 @@ Adding new staff
 Prolonging record with id=1
 Returning record with id=1
 Removing record with id=1
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Adding new author
+Saving Excel file for Authors
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Saving Excel file for Authors
+Saving Excel file for Authors
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Removing book with id=1
+Failed executing DbCommand (16ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Books"
+WHERE "Id" = @p0;
+An exception occurred in the database while saving changes for context type 'Library.DAL.EF.ApplicationContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: UPDATE или DELETE в таблице "Books" нарушает ограничение внешнего ключа "FK_BookLoanRecords_Books_BookId" таблицы "BookLoanRecords"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|200_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+  Exception data:
+    Severity: ОШИБКА
+    SqlState: 23503
+    MessageText: UPDATE или DELETE в таблице "Books" нарушает ограничение внешнего ключа "FK_BookLoanRecords_Books_BookId" таблицы "BookLoanRecords"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: BookLoanRecords
+    ConstraintName: FK_BookLoanRecords_Books_BookId
+    File: d:\pginstaller_13.auto\postgres.windows-x64\src\backend\utils\adt\ri_triggers.c
+    Line: 2490
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__101_0(DbContext _, ValueTuple`2 t)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+An unhandled exception has occurred while executing the request.
+Retrieving Authors
+Removing reader with id=1
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Adding new reader
+Removing book with id=1
+Failed executing DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Removing book with id=1
+Failed executing DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__18_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Removing book with id=1
+Failed executing DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__18_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Removing book with id=1
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Books, page=
+Adding new book
+Retrieving Books, page=
+Retrieving Statistics
+Retrieving Records, page=
+Adding record for reader=2, staff=1, book=2
+Retrieving Records, page=
+Retrieving Books, page=
+Retrieving Statistics
+Retrieving Staff, page=
+Retrieving Readers, page=
+Retrieving Authors, page=, search=, sort=
+Adding or editing Author with id =2
+Retrieving Books, page=
+Retrieving Statistics
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Statistics
+Retrieving Genres, page=
+Retrieving Books, page=
+Adding new book
+Failed executing DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__18_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Adding new book
+Failed executing DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__18_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Adding new book
+Failed executing DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Adding new book
+Failed executing DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__18_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Books, page=
+Updating book with id=3
+Failed executing DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__18_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Retrieving Books, page=
+Adding new book
+Failed executing DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Books, page=
+Adding new book
+Retrieving Books, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Failed executing DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Retrieving Books, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Adding record for reader=2, staff=1, book=2
+Retrieving Records, page=
+Retrieving Books, page=
+Removing book with id=2
+Retrieving Books, page=
+Retrieving Records, page=
+Returning record with id=5
+Failed executing DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Returning record with id=6
+Failed executing DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__18_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Returning record with id=6
+Failed executing DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__18_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Removing record with id=6
+Retrieving Records, page=
+Prolonging record with id=5
+Retrieving Records, page=
+Retrieving Records, page=
+Returning record with id=5
+Retrieving Records, page=
+Adding record for reader=2, staff=1, book=3
+Retrieving Records, page=
+Returning record with id=8
+Failed executing DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Retrieving Records, page=
+Adding record for reader=2, staff=1, book=4
+Retrieving Records, page=
+Adding record for reader=2, staff=1, book=3
+Retrieving Records, page=
+Returning record with id=10
+Failed executing DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Retrieving Records, page=
+Retrieving Books, page=
+Retrieving Staff, page=
+Retrieving Records, page=
+Retrieving Statistics
+Retrieving Books, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Returning record with id=9
+Failed executing DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT b."Id", b."GenreId", b."Name", b."NumberOfCopies", b."NumberOfCopiesCurrent"
+FROM "Books" AS b
+WHERE b."Id" = @__p_0
+An exception occurred while iterating over the results of a query for context type 'Library.DAL.EF.ApplicationContext'.
+Npgsql.NpgsqlOperationInProgressException (0x80004005): A command is already in progress: SELECT b."Id", b."BookId", b."BorrowDate", b."DueDate", b."ReaderId", b."ReturnDate", b."StaffId"
+FROM "BookLoanRecords" AS b
+   at Npgsql.NpgsqlConnector.<StartUserAction>g__DoStartUserAction|241_0(<>c__DisplayClass241_0& )
+   at Npgsql.NpgsqlConnector.StartUserAction(ConnectorState newState, NpgsqlCommand command, CancellationToken cancellationToken, Boolean attemptPgCancellation)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__18_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Books, page=
+Adding new book
+Retrieving Books, page=
+Retrieving Records, page=
+Adding record for reader=2, staff=1, book=5
+Retrieving Records, page=
+Returning record with id=11
+Retrieving Records, page=
+Retrieving Books, page=
+Retrieving Records, page=
+Adding record for reader=2, staff=1, book=5
+Retrieving Records, page=
+Retrieving Books, page=
+Retrieving Records, page=
+Removing record with id=12
+Retrieving Records, page=
+Retrieving Books, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Removing record with id=11
+Retrieving Records, page=
+Retrieving Books, page=
+Removing book with id=5
+Retrieving Books, page=
+Removing book with id=3
+Retrieving Books, page=
+Removing book with id=4
+Retrieving Books, page=
+Retrieving Records, page=
+Retrieving Staff, page=
+Retrieving Genres, page=
+Retrieving Authors, page=, search=, sort=
+Retrieving Authors, page=, search=, sort=
+Retrieving Books, page=
+Adding new book
+Retrieving Books, page=
+Retrieving Records, page=
+Adding record for reader=2, staff=1, book=6
+Retrieving Records, page=
+Adding record for reader=2, staff=1, book=6
+Retrieving Records, page=
+Adding record for reader=2, staff=1, book=6
+Retrieving Records, page=
+Adding record for reader=2, staff=1, book=6
+Retrieving Records, page=
+Adding record for reader=2, staff=1, book=6
+Retrieving Records, page=
+Adding record for reader=2, staff=1, book=6
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Books, page=
+Retrieving Records, page=
+Removing record with id=13
+Retrieving Records, page=
+Retrieving Books, page=
