@@ -126,7 +126,7 @@
                 @book.GetAuthors()
             </td>
             <td>
-                @book.NumberOfCopiesCurrent
+                @(book.NumberOfCopies - book.BookLoanRecords.Count(it => !it.ReturnDate.HasValue))
             </td>
             <td>
                 @book.NumberOfCopies

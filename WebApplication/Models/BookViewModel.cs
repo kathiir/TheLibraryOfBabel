@@ -10,12 +10,14 @@ namespace WebApplication.Models
         public string Name { get; set; }
         public List<AuthorViewModel> Authors { get; set; }
         public int NumberOfCopies { get; set; }
-        public int NumberOfCopiesCurrent { get; set; }
+        // public int NumberOfCopiesCurrent { get; set; }
+        public List<BookLoanRecordViewModel> BookLoanRecords { get; set; }
         public GenreViewModel Genre { get; set; }
 
         public BookViewModel()
         {
             Authors = new List<AuthorViewModel>();
+            BookLoanRecords = new List<BookLoanRecordViewModel>();
         }
 
         public String GetAuthors()

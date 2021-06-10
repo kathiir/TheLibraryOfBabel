@@ -36,9 +36,11 @@ namespace Library.BLL.Services
             }
 
             book.Name = dto.Name;
-            book.NumberOfCopies = dto.NumberOfCopies;
-            book.NumberOfCopiesCurrent = dto.NumberOfCopiesCurrent;
 
+            var count = book.BookLoanRecords.Count(item => item.ReturnDate.HasValue);
+            book.NumberOfCopies = dto.NumberOfCopies >= count ? dto.NumberOfCopies : count;
+            
+            
             if (dto.Genre != null)
             {
                 book.Genre = _genreRepository.Get(dto.Genre.Id);
@@ -65,12 +67,8 @@ namespace Library.BLL.Services
                     book.Authors.Add(author);
                 }
             });
-            // if (dto.Id != 0)
-            // {
-                // UpdateCount(dto.Id);
-            // }
+            
             _bookRepository.CreateOrUpdate(book);
-
         }
 
         public BookDto Get(int id)
@@ -83,9 +81,12 @@ namespace Library.BLL.Services
             // var a = book.Genre;
             var config = new MapperConfiguration(cfg =>
             {
+                cfg.CreateMap<BookLoanRecord, BookLoanRecordDto>();
                 cfg.CreateMap<Book, BookDto>();
                 cfg.CreateMap<Author, AuthorDto>();
                 cfg.CreateMap<Genre, GenreDto>();
+                cfg.CreateMap<Reader, ReaderDto>();
+                cfg.CreateMap<Staff, StaffDto>();
             });
             config.AssertConfigurationIsValid();
 
@@ -100,9 +101,12 @@ namespace Library.BLL.Services
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Author, AuthorDto>();
+                cfg.CreateMap<BookLoanRecord, BookLoanRecordDto>();
                 cfg.CreateMap<Book, BookDto>();
+                cfg.CreateMap<Author, AuthorDto>();
                 cfg.CreateMap<Genre, GenreDto>();
+                cfg.CreateMap<Reader, ReaderDto>();
+                cfg.CreateMap<Staff, StaffDto>();
             });
             config.AssertConfigurationIsValid();
 
@@ -112,62 +116,17 @@ namespace Library.BLL.Services
 
         public void Delete(int id)
         {
-            var records = _bookLoanRecordRepository.GetAll().ToList();
-
-            records = records.Where(item => item.Book.Id == id).ToList();
-            
-            foreach (var bookLoanRecord in records)
-            {
-                _bookLoanRecordRepository.Delete(bookLoanRecord.Id);
-            }
+            // var records = _bookLoanRecordRepository.GetAll().ToList();
+            //
+            // records = records.Where(item => item.Book.Id == id).ToList();
+            //
+            // foreach (var bookLoanRecord in records)
+            // {
+            //     _bookLoanRecordRepository.Delete(bookLoanRecord.Id);
+            // }
             
             _bookRepository.Delete(id);
         }
 
-        public int GetLoanedCopiesCount(int bookId)
-        {
-            return _bookLoanRecordRepository.Count(record =>
-                record.Book.Id == bookId && !record.ReturnDate.HasValue);
-        }
-
-        public void UpdateCount(int id)
-        {
-            var book = Get(id);
-            if (book != null)
-            {
-                book.NumberOfCopiesCurrent = book.NumberOfCopies - GetLoanedCopiesCount(id);
-                // AddOrUpdate(book);
-            }
-        }
-        
-        public void UpdateCountAndSave(int id)
-        {
-            var book = Get(id);
-            if (book != null)
-            {
-                book.NumberOfCopiesCurrent = book.NumberOfCopies - GetLoanedCopiesCount(id);
-                AddOrUpdate(book);
-            }
-        }
-        
-        public void UpCount(int id)
-        {
-            var book = Get(id);
-            if (book != null)
-            {
-                book.NumberOfCopiesCurrent++;
-                AddOrUpdate(book);
-            }
-        }
-        
-        public void DownCount(int id)
-        {
-            var book = Get(id);
-            if (book != null)
-            {
-                book.NumberOfCopiesCurrent--;
-                AddOrUpdate(book);
-            }
-        }
     }
 }

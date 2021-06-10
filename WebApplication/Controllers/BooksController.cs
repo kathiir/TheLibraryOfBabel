@@ -90,9 +90,12 @@ namespace WebApplication.Controllers
 
             var config = new MapperConfiguration(cfg =>
             {
+                cfg.CreateMap<BookLoanRecordDto, BookLoanRecordViewModel>();
                 cfg.CreateMap<BookDto, BookViewModel>();
                 cfg.CreateMap<AuthorDto, AuthorViewModel>();
                 cfg.CreateMap<GenreDto, GenreViewModel>();
+                cfg.CreateMap<ReaderDto, ReaderViewModel>();
+                cfg.CreateMap<StaffDto, StaffViewModel>();
             });
             config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();
@@ -111,7 +114,7 @@ namespace WebApplication.Controllers
             ViewData["numberOrder"] = "asc";
             ViewData["nameOrder"] = "asc";
 
-            ViewData["currentOrder"] = "asc";
+            ViewData["currentOrder"] = sort[1];
 
             
             ViewData["orderBy"] = sort[0];
@@ -121,27 +124,22 @@ namespace WebApplication.Controllers
                 case "authors":
                     books = books.OrderBy(item => item.GetAuthors()).ToList();
                     ViewData["authorsOrder"] = desc ? "asc" : "desc";
-                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
                 case "genre":
                     books = books.OrderBy(item => item.Genre == null ? "" : item.Genre.Name).ToList();
                     ViewData["genreOrder"] = desc ? "asc" : "desc";
-                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
                 case "remain":
-                    books = books.OrderBy(item => item.NumberOfCopiesCurrent).ToList();
+                    books = books.OrderByDescending(item => item.BookLoanRecords.Count(it => !it.ReturnDate.HasValue)).ToList();
                     ViewData["remainOrder"] = desc ? "asc" : "desc";
-                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
                 case "number":
                     books = books.OrderBy(item => item.NumberOfCopies).ToList();
                     ViewData["numberOrder"] = desc ? "asc" : "desc";
-                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
                 default:
                     books = books.OrderBy(item => item.Name).ToList();
                     ViewData["nameOrder"] = desc ? "asc" : "desc";
-                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
             }
 
@@ -153,7 +151,7 @@ namespace WebApplication.Controllers
             ViewData["Genres"] = genres;
             ViewData["Authors"] = authors;
             
-            return View(PaginatedList<BookViewModel>.CreatePage(books.AsQueryable(), pageNumber ?? 1, 10));
+            return View(PaginatedList<BookViewModel>.CreatePage(books.AsQueryable(), pageNumber ?? 1, 20));
         }
 
         public IActionResult Book(int id)
@@ -164,9 +162,12 @@ namespace WebApplication.Controllers
 
             var config = new MapperConfiguration(cfg =>
             {
+                cfg.CreateMap<BookLoanRecordDto, BookLoanRecordViewModel>();
                 cfg.CreateMap<BookDto, BookViewModel>();
                 cfg.CreateMap<AuthorDto, AuthorViewModel>();
                 cfg.CreateMap<GenreDto, GenreViewModel>();
+                cfg.CreateMap<ReaderDto, ReaderViewModel>();
+                cfg.CreateMap<StaffDto, StaffViewModel>();
             });
             config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();
@@ -180,9 +181,12 @@ namespace WebApplication.Controllers
             var book = _bookService.Get(id);
             if (book == null)
             {
+                ViewData["MinCount"] = 0;
                 return View(new BookViewModel());
             }
             var bookViewModel = mapper.Map<BookDto, BookViewModel>(book);
+            
+            ViewData["MinCount"] = book.BookLoanRecords.Count(item => !item.ReturnDate.HasValue);
 
             return View(bookViewModel);
         }
@@ -190,29 +194,19 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult Book(BookViewModel bookViewModel, string[] authors, int genre)
         {
-            BookDto book;
-            if (bookViewModel.Id == 0)
-            {
-                _logger.LogInformation($"Adding new book");
-                bookViewModel.NumberOfCopiesCurrent = bookViewModel.NumberOfCopies;
-            }
-            else
-            {
-                book = _bookService.Get(bookViewModel.Id);
-                if (book != null)
-                {
-                    bookViewModel.NumberOfCopiesCurrent = bookViewModel.NumberOfCopies - (book.NumberOfCopies - book.NumberOfCopiesCurrent);
-                }
-                _logger.LogInformation($"Updating book with id={bookViewModel.Id}");
-            }
+            _logger.LogInformation(bookViewModel.Id == 0
+                ? $"Adding new book"
+                : $"Updating book with id={bookViewModel.Id}");
 
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<BookViewModel, BookDto>();
                 cfg.CreateMap<AuthorViewModel, AuthorDto>();
                 cfg.CreateMap<GenreViewModel, GenreDto>();
+                cfg.CreateMap<BookLoanRecordViewModel, BookLoanRecordDto>();
+                cfg.CreateMap<ReaderViewModel, ReaderDto>();
+                cfg.CreateMap<StaffViewModel, StaffDto>();
             });
-            // config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();
 
             var bookDto = mapper.Map<BookViewModel, BookDto>(bookViewModel);
@@ -220,13 +214,6 @@ namespace WebApplication.Controllers
             bookDto.Genre = _genreService.Get(genre);
 
             bookDto.Authors = _authorService.GetByNamesOrCreate(authors);
-            
-            // int count = _bookService.GetLoanedCopiesCount(bookDto.Id);
-            bookDto.NumberOfCopies = bookDto.NumberOfCopies >= bookDto.NumberOfCopiesCurrent
-                ? bookDto.NumberOfCopies
-                : bookDto.NumberOfCopiesCurrent;
-            
-            // _bookService.AddOrUpdate(bookDto);
             
             _bookService.AddOrUpdate(bookDto);
 

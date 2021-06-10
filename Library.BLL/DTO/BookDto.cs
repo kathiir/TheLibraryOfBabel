@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Library.DAL.Entities;
 
 namespace Library.BLL.DTO
 {
@@ -8,7 +9,14 @@ namespace Library.BLL.DTO
         public string Name { get; set; }
         public List<AuthorDto> Authors { get; set; }
         public int NumberOfCopies { get; set; }
-        public int NumberOfCopiesCurrent { get; set; }
+        // public int NumberOfCopiesCurrent { get; set; }
+        public List<BookLoanRecordDto> BookLoanRecords { get; set; }
         public GenreDto Genre { get; set; }
+
+        public BookDto()
+        {
+            Authors = new List<AuthorDto>();
+            BookLoanRecords = new List<BookLoanRecordDto>();
+        }
     }
 }

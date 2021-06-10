@@ -9,10 +9,9 @@ namespace Library.DAL.Entities
         public virtual Book Book { get; set; }
         [Required]
         public virtual Reader Reader { get; set; }
+        [Required]
         public virtual Staff Staff { get; set; }
-        [Required]
         public DateTime BorrowDate { get; set; }
-        [Required]
         public DateTime DueDate { get; set; }
         public DateTime? ReturnDate { get; set; }
     }

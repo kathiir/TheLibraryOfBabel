@@ -1805,3 +1805,798 @@ Retrieving Records, page=
 Removing record with id=13
 Retrieving Records, page=
 Retrieving Books, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Returning record with id=14
+Retrieving Records, page=
+Retrieving Books, page=
+Removing book with id=6
+Retrieving Books, page=
+Retrieving Statistics
+Retrieving Books, page=
+Saving Excel file for Books
+Retrieving Authors, page=, search=, sort=
+Retrieving Genres, page=
+Retrieving Authors, page=, search=, sort=
+Retrieving Genres, page=
+Saving Excel file for Genres
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Staff, page=
+Retrieving Readers, page=
+Retrieving Genres, page=
+Retrieving Authors, page=, search=, sort=
+Retrieving Statistics
+Retrieving Authors, page=, search=, sort=
+Saving Excel file for Authors
+Retrieving Readers, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Books, page=
+Adding new book
+Retrieving Books, page=
+Retrieving Records, page=
+Adding record for reader=2, staff=1, book=7
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Books, page=
+Adding new book
+Retrieving Books, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Staff, page=
+Retrieving Readers, page=
+Retrieving Genres, page=
+Retrieving Authors, page=, search=, sort=
+Retrieving Books, page=
+Retrieving Books, page=
+Retrieving Books, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Saving Excel file for Records
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Books, page=
+Retrieving Authors, page=, search=, sort=
+Retrieving Staff, page=
+Retrieving Records, page=
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Authors, page=, search=, sort=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Saving Excel file for Records
+Retrieving Records, page=
+Retrieving Statistics
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Books, page=
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Retrieving Books, page=
+Retrieving Authors, page=, search=, sort=
+Adding or editing Author with id =0
+Adding new author
+Retrieving Authors, page=, search=, sort=
+Retrieving Books, page=
+Adding new book
+Retrieving Books, page=
+Retrieving Readers, page=
+Adding new reader
+Retrieving Readers, page=
+Retrieving Staff, page=
+Adding new staff
+Retrieving Staff, page=
+Retrieving Books, page=
+Retrieving Records, page=
+Adding record for reader=1, staff=1, book=1
+Retrieving Records, page=
+Retrieving Books, page=
+Retrieving Records, page=
+Adding record for reader=1, staff=1, book=1
+Retrieving Records, page=
+Adding record for reader=1, staff=1, book=1
+Retrieving Records, page=
+Adding record for reader=1, staff=1, book=1
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Books, page=
+Retrieving Records, page=
+Returning record with id=1
+Retrieving Records, page=
+Retrieving Books, page=
+Retrieving Records, page=
+Adding record for reader=1, staff=1, book=1
+Retrieving Records, page=
+Returning record with id=2
+Retrieving Records, page=
+Retrieving Readers, page=
+Retrieving Readers, page=
+Retrieving Staff, page=
+Retrieving Readers, page=
+Retrieving Staff, page=
+Retrieving Staff, page=
+Retrieving Staff, page=
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Saving Excel file for Records
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Saving Excel file for Records
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Saving Excel file for Records
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Authors, page=, search=, sort=
+Adding or editing Author with id =0
+Adding new author
+Retrieving Authors, page=, search=, sort=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Saving Excel file for Records
+Retrieving Records, page=
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Prolonging record with id=3
+Retrieving Records, page=
+Prolonging record with id=4
+Retrieving Records, page=
+Prolonging record with id=5
+Retrieving Records, page=
+Prolonging record with id=1
+Retrieving Records, page=
+Retrieving Records, page=
+Returning record with id=1
+Retrieving Records, page=
+Returning record with id=3
+Retrieving Records, page=
+Returning record with id=4
+Retrieving Records, page=
+Returning record with id=5
+Retrieving Records, page=
+Removing record with id=1
+Retrieving Records, page=
+Removing record with id=2
+Retrieving Records, page=
+Removing record with id=3
+Retrieving Records, page=
+Removing record with id=4
+Retrieving Records, page=
+Removing record with id=5
+Retrieving Records, page=
+Adding record for reader=1, staff=1, book=1
+Retrieving Records, page=
+Returning record with id=6
+Retrieving Records, page=
+Retrieving Statistics
+Retrieving Books, page=
+Retrieving Genres, page=
+Retrieving Readers, page=
+Retrieving Staff, page=
+Retrieving Genres, page=
+Retrieving Staff, page=
+Retrieving Readers, page=
+Retrieving Genres, page=
+Retrieving Authors, page=, search=, sort=
+Retrieving Books, page=
+Retrieving Records, page=
+Retrieving Books, page=
+Retrieving Records, page=
+Retrieving Statistics
+Retrieving Genres, page=
+Retrieving Readers, page=
+Retrieving Readers, page=
+Retrieving Staff, page=
+Retrieving Readers, page=
+Retrieving Staff, page=
+Retrieving Readers, page=
+Retrieving Staff, page=
+Retrieving Readers, page=
+Retrieving Staff, page=
+Retrieving Readers, page=
+Retrieving Records, page=
+Prolonging record with id=6
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Removing record with id=6
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Records, page=
+Retrieving Staff, page=
+Removing staff with id=1
+Retrieving Staff, page=
+Retrieving Readers, page=
+Removing reader with id=1
+Retrieving Readers, page=
+Retrieving Genres, page=
+Retrieving Genres, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Genres, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Genres, page=
+Removing genre with id=1
+Failed executing DbCommand (13ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Genres"
+WHERE "Id" = @p0;
+An exception occurred in the database while saving changes for context type 'Library.DAL.EF.ApplicationContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: UPDATE или DELETE в таблице "Genres" нарушает ограничение внешнего ключа "FK_Books_Genres_GenreId" таблицы "Books"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|200_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+  Exception data:
+    Severity: ОШИБКА
+    SqlState: 23503
+    MessageText: UPDATE или DELETE в таблице "Genres" нарушает ограничение внешнего ключа "FK_Books_Genres_GenreId" таблицы "Books"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Books
+    ConstraintName: FK_Books_Genres_GenreId
+    File: d:\pginstaller_13.auto\postgres.windows-x64\src\backend\utils\adt\ri_triggers.c
+    Line: 2490
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__101_0(DbContext _, ValueTuple`2 t)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Retrieving Books, page=
+Adding new book
+Retrieving Books, page=
+Retrieving Genres, page=
+Removing genre with id=1
+Failed executing DbCommand (13ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Genres"
+WHERE "Id" = @p0;
+An exception occurred in the database while saving changes for context type 'Library.DAL.EF.ApplicationContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23503: UPDATE или DELETE в таблице "Genres" нарушает ограничение внешнего ключа "FK_Books_Genres_GenreId" таблицы "Books"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|200_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+  Exception data:
+    Severity: ОШИБКА
+    SqlState: 23503
+    MessageText: UPDATE или DELETE в таблице "Genres" нарушает ограничение внешнего ключа "FK_Books_Genres_GenreId" таблицы "Books"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: Books
+    ConstraintName: FK_Books_Genres_GenreId
+    File: d:\pginstaller_13.auto\postgres.windows-x64\src\backend\utils\adt\ri_triggers.c
+    Line: 2490
+    Routine: ri_ReportViolation
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__101_0(DbContext _, ValueTuple`2 t)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Retrieving Books, page=
+Adding new book
+Retrieving Books, page=
+Retrieving Genres, page=
+Removing genre with id=1
+Retrieving Genres, page=
+Retrieving Books, page=
+Retrieving Genres, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Records, page=
+Retrieving Books, page=
+Retrieving Authors, page=, search=, sort=
+Retrieving Genres, page=
+Retrieving Books, page=
+Retrieving Genres, page=
+Retrieving Authors, page=, search=, sort=
+Retrieving Genres, page=
+Retrieving Genres, page=
+Retrieving Readers, page=
+Retrieving Records, page=
+Retrieving Staff, page=
+Retrieving Readers, page=
+Retrieving Authors, page=, search=, sort=
+Retrieving Books, page=
+Retrieving Readers, page=
+Retrieving Records, page=
+Retrieving Readers, page=
+Retrieving Genres, page=
+Retrieving Authors, page=, search=, sort=
+Retrieving Books, page=
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Removing genre with id=5
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Retrieving Genres, page=
+Adding new genre
+Retrieving Genres, page=
+Retrieving Genres, page=2
+Retrieving Genres, page=1
+Retrieving Genres, page=2
+Retrieving Genres, page=1
+Retrieving Genres, page=2
+Retrieving Staff, page=
+Adding new staff
+Retrieving Staff, page=
+Adding new staff
+Retrieving Staff, page=
+Adding new staff
+Retrieving Staff, page=
+Adding new staff
+An error occurred using the connection to database 'library' on server ''.
+An unhandled exception has occurred while executing the request.
+An error occurred using the connection to database 'library' on server ''.
+An unhandled exception has occurred while executing the request.
+An error occurred using the connection to database 'library' on server ''.
+An unhandled exception has occurred while executing the request.
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Readers, page=
+Retrieving Staff, page=
+Adding new staff
+Retrieving Staff, page=
+Adding new staff
+Retrieving Staff, page=
+Adding new staff
+Retrieving Staff, page=
+Adding new staff
+Retrieving Staff, page=
+Adding new staff
+Retrieving Staff, page=
+Adding new staff
+Retrieving Staff, page=
+Adding new staff
+Retrieving Staff, page=
+Adding new staff
+Retrieving Staff, page=
+Adding new staff
+Retrieving Staff, page=
+Removing staff with id=1
+Retrieving Staff, page=
+Removing staff with id=2
+Retrieving Staff, page=
+Removing staff with id=3
+Retrieving Staff, page=
+Removing staff with id=4
+Retrieving Staff, page=
+Removing staff with id=5
+Retrieving Staff, page=
+Removing staff with id=6
+Retrieving Staff, page=
+Removing staff with id=7
+Retrieving Staff, page=
+Removing staff with id=8
+Retrieving Staff, page=
+Removing staff with id=9
+Retrieving Staff, page=
+Removing staff with id=10
+Retrieving Staff, page=
+Removing staff with id=11
+Retrieving Staff, page=
+Removing staff with id=12
+Retrieving Staff, page=
+Removing staff with id=13
+Retrieving Staff, page=
+Retrieving Records, page=
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Genres, page=
+Retrieving Genres, page=2
+Retrieving Genres, page=1
+Retrieving Genres, page=2
+Retrieving Genres, page=1
+Retrieving Genres, page=1
+Retrieving Genres, page=1
+Retrieving Genres, page=2
+Retrieving Genres, page=2
+Retrieving Genres, page=2
+Retrieving Genres, page=1
+Retrieving Genres, page=2
+Retrieving Genres, page=1
+Retrieving Genres, page=1
+Retrieving Genres, page=1
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Genres, page=
+Retrieving Genres, page=2
+Retrieving Genres, page=1
+Retrieving Genres, page=1
+Retrieving Genres, page=2
+Retrieving Genres, page=1
+Retrieving Genres, page=1
+Retrieving Genres, page=
+Retrieving Genres, page=
+Retrieving Books, page=
+Retrieving Statistics
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Now listening on: https://localhost:5001
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Users\djliz\RiderProjects\TheLibraryOfBabel\WebApplication
+Retrieving Statistics
+Retrieving Books, page=
+Retrieving Books, page=2
+Retrieving Books, page=3
+Retrieving Books, page=4
+Retrieving Books, page=5
+Retrieving Books, page=6
+Retrieving Books, page=7
+Retrieving Books, page=8
+Retrieving Statistics
+Retrieving Books, page=
+Retrieving Genres, page=
+Retrieving Authors, page=, search=, sort=
+Retrieving Records, page=

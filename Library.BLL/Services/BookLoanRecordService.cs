@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using AutoMapper;
 using Library.BLL.DTO;
 using Library.BLL.Interfaces;
@@ -46,9 +47,16 @@ namespace Library.BLL.Services
             bookLoanRecord.DueDate = dto.DueDate;
             bookLoanRecord.ReturnDate = dto.ReturnDate;
 
-            bookLoanRecord.Book = _bookRepository.Get(dto.Book.Id);
-            bookLoanRecord.Reader = _readerRepository.Get(dto.Reader.Id);
+            var book = _bookRepository.Get(dto.Book.Id);
             
+            if (book.BookLoanRecords.Count(item => !item.ReturnDate.HasValue) >= book.NumberOfCopies && !bookLoanRecord.ReturnDate.HasValue ) 
+            {
+                return;
+            }
+            
+            bookLoanRecord.Book = book;
+            bookLoanRecord.Reader = _readerRepository.Get(dto.Reader.Id);
+
             if (dto.Staff != null)
             {
                 bookLoanRecord.Staff = _staffRepository.Get(dto.Staff.Id);
@@ -101,15 +109,7 @@ namespace Library.BLL.Services
 
         public void Delete(int id)
         {
-            var record = Get(id);
-            if (record != null)
-            {
-                _bookLoanRecordRepository.Delete(id);
-                if (!record.ReturnDate.HasValue)
-                {
-                    _bookService.UpCount(record.Book.Id);
-                }
-            }
+            _bookLoanRecordRepository.Delete(id);
         }
 
         public void Return(int id)
@@ -119,8 +119,6 @@ namespace Library.BLL.Services
             {
                 record.ReturnDate = DateTime.Now;
                 _bookLoanRecordRepository.CreateOrUpdate(record);
-                _bookService.UpCount(record.Book.Id);
-
             }
         }
 

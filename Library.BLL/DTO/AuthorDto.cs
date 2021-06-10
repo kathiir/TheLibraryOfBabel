@@ -7,5 +7,10 @@ namespace Library.BLL.DTO
         public int Id { get; set; }
         public string Name { get; set; }
         public List<BookDto> Books { get; set; }
+
+        public AuthorDto()
+        {
+            Books = new List<BookDto>();
+        }
     }
 }

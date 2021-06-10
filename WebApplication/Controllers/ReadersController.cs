@@ -68,7 +68,7 @@ namespace WebApplication.Controllers
             ViewData["numberOrder"] = "asc";
             ViewData["nameOrder"] = "asc";
             
-            ViewData["currentOrder"] = "asc";
+            ViewData["currentOrder"] = sort[1];
 
             ViewData["orderBy"] = sort[0];
     
@@ -77,12 +77,10 @@ namespace WebApplication.Controllers
                 case "number":
                     readers = readers.OrderBy(item => item.BookLoanRecords.Count).ToList();
                     ViewData["numberOrder"] = desc ? "asc" : "desc";
-                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
                 default:
                     readers = readers.OrderBy(item => item.Name).ToList();
                     ViewData["nameOrder"] = desc ? "asc" : "desc";
-                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
             }
 
@@ -91,7 +89,7 @@ namespace WebApplication.Controllers
                 readers.Reverse();
             }
             
-            return View(PaginatedList<ReaderViewModel>.CreatePage(readers.AsQueryable(), pageNumber ?? 1, 10));
+            return View(PaginatedList<ReaderViewModel>.CreatePage(readers.AsQueryable(), pageNumber ?? 1, 20));
         }
         
         public IActionResult Reader(int id)

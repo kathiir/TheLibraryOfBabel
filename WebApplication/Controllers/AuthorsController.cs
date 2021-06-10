@@ -52,9 +52,12 @@ namespace WebApplication.Controllers
 
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<BookDto, BookViewModel>();
+                // cfg.CreateMap<BookLoanRecordDto, BookLoanRecordViewModel>();
+                cfg.CreateMap<BookDto, BookViewModel>().ForMember(s => s.BookLoanRecords, m => m.Ignore());;
                 cfg.CreateMap<AuthorDto, AuthorViewModel>();
                 cfg.CreateMap<GenreDto, GenreViewModel>();
+                // cfg.CreateMap<ReaderDto, ReaderViewModel>();
+                // cfg.CreateMap<StaffDto, StaffViewModel>();
             });
             config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();
@@ -68,21 +71,20 @@ namespace WebApplication.Controllers
             ViewData["numberOrder"] = "asc";
             ViewData["nameOrder"] = "asc";
             
-            ViewData["currentOrder"] = "asc";
+            ViewData["currentOrder"] = sort[1];
 
             ViewData["orderBy"] = sort[0];
+            
     
             switch (sort[0])
             {
                 case "number":
                     authors = authors.OrderBy(item => item.Books.Count).ToList();
                     ViewData["numberOrder"] = desc ? "asc" : "desc";
-                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
                 default:
                     authors = authors.OrderBy(item => item.Name).ToList();
                     ViewData["nameOrder"] = desc ? "asc" : "desc";
-                    ViewData["currentOrder"] = desc ? "asc" : "desc";
                     break;
             }
 
@@ -94,7 +96,7 @@ namespace WebApplication.Controllers
             // ViewData["Genres"] = genres;
             // ViewData["Authors"] = authors;
             
-            return View(PaginatedList<AuthorViewModel>.CreatePage(authors.AsQueryable(), pageNumber ?? 1, 10));
+            return View(PaginatedList<AuthorViewModel>.CreatePage(authors.AsQueryable(), pageNumber ?? 1, 20));
         }
         
         public IActionResult Author(int id)
@@ -105,9 +107,12 @@ namespace WebApplication.Controllers
 
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<BookDto, BookViewModel>();
+                // cfg.CreateMap<BookLoanRecordDto, BookLoanRecordViewModel>();
+                cfg.CreateMap<BookDto, BookViewModel>().ForMember(s => s.BookLoanRecords, m => m.Ignore());;
                 cfg.CreateMap<AuthorDto, AuthorViewModel>();
                 cfg.CreateMap<GenreDto, GenreViewModel>();
+                // cfg.CreateMap<ReaderDto, ReaderViewModel>();
+                // cfg.CreateMap<StaffDto, StaffViewModel>();
             });
             config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();
@@ -138,9 +143,12 @@ namespace WebApplication.Controllers
 
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<BookViewModel, BookDto>();
+                cfg.CreateMap<BookViewModel, BookDto>().ForMember(s => s.BookLoanRecords, m => m.Ignore());;
                 cfg.CreateMap<AuthorViewModel, AuthorDto>();
                 cfg.CreateMap<GenreViewModel, GenreDto>();
+                // cfg.CreateMap<BookLoanRecordViewModel, BookLoanRecordDto>();
+                // cfg.CreateMap<ReaderViewModel, ReaderDto>();
+                // cfg.CreateMap<StaffViewModel, StaffDto>();
             });
             var mapper = config.CreateMapper();
 

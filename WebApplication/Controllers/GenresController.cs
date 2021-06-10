@@ -33,7 +33,7 @@ namespace WebApplication.Controllers
         {
             _logger.LogInformation($"Retrieving Genres, page={pageNumber}");
 
-            var genreList = _genreService.GetAll();
+            var genreList = _genreService.GetAll().OrderBy(dto => dto.Name).ToList();
             
             if (sortBy.IsNullOrEmpty())
             {
@@ -44,6 +44,8 @@ namespace WebApplication.Controllers
             ViewData["page"] = pageNumber;
             
             ViewData["nameOrder"] = sortBy.Equals("asc") ? "desc" : "asc";
+            ViewData["currentOrder"] = sortBy;
+
 
             if (search != null)
             {
@@ -64,7 +66,7 @@ namespace WebApplication.Controllers
                 genreViewModels.Reverse();
             }
 
-            return View(PaginatedList<GenreViewModel>.CreatePage(genreViewModels.AsQueryable(), pageNumber ?? 1, 10));
+            return View(PaginatedList<GenreViewModel>.CreatePage(genreViewModels.AsQueryable(), pageNumber ?? 1, 20));
         }
 
         public IActionResult Genre(int id)
@@ -109,13 +111,12 @@ namespace WebApplication.Controllers
             
             return RedirectPermanent("~/Genres/");
         }
-
-
+        
         public IActionResult RemoveGenre(int id)
         {
             _logger.LogInformation($"Removing genre with id={id}");
             _genreService.Delete(id);
-            return RedirectPermanent("~/Authors/");
+            return RedirectPermanent("~/Genres/");
         }
         
         public ActionResult Download()

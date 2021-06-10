@@ -54,7 +54,7 @@
                 </a>
             </td>
             <td>
-                @item.BookLoanRecords.Count
+                @item.BookLoanRecords.Count(it => !it.ReturnDate.HasValue)
             </td>
             <td>
                 <a href="~/Staff/RemoveStaff/?id=@item.Id" class="btn btn-outline-danger">

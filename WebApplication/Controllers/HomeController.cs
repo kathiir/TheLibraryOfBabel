@@ -62,13 +62,13 @@ namespace WebApplication.Controllers
             ViewData["PopularBook"] = _bookService.Get(id.FirstOrDefault())?.Name;
             ViewData["Reading"] = readers
                 .OrderByDescending(item => item.BookLoanRecords.Count)
-                .First()?.Name;
+                .FirstOrDefault()?.Name;
             ViewData["Working"] = staff
                 .OrderByDescending(item => item.BookLoanRecords.Count)
-                .First()?.Name;
+                .FirstOrDefault()?.Name;
             ViewData["Writing"] = authors
                 .OrderByDescending(item => item.Books.Count)
-                .First()?.Name;
+                .FirstOrDefault()?.Name;
             id = books
                 .Where(it => it.Genre != null)
                 .GroupBy(i => i.Genre.Id)

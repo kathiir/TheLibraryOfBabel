@@ -48,7 +48,7 @@
                 </a>
             </td>
             <td>
-                <a href="~/Genre/RemoveGenre/?id=@genre.Id" class="btn btn-outline-danger">
+                <a href="~/Genres/RemoveGenre/?id=@genre.Id" class="btn btn-outline-danger">
                     Remove
                 </a>
             </td>
@@ -63,14 +63,14 @@
 }
 
 <a asp-action="Index"
-   asp-route-sortBy="@ViewData["nameOrder"]"
+   asp-route-sortBy="@ViewData["currentOrder"]"
    asp-route-search="@ViewData["searchFilt"]"
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    class="btn btn-default @prevDisabled">
     Previous
 </a>
 <a asp-action="Index"
-   asp-route-sortBy="@ViewData["nameOrder"]"
+   asp-route-sortBy="@ViewData["currentOrder"]"
    asp-route-search="@ViewData["searchFilt"]"   
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    class="btn btn-default @nextDisabled">

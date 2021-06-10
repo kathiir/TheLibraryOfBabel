@@ -8,21 +8,23 @@
 <div class="jumbotron">
     <h1 class="display-3">Book Loan Records</h1>
     <hr class="my-4">
+    <p class="lead">Total record count: @ViewData["Total"]</p>
+    <p class="lead">Yet to return: @ViewData["Yeti"]</p>
+    <p class="lead">Books returned: @ViewData["Returned"]</p>
+    <p class="lead">Overdue: @ViewData["Overdue"]</p>
     <p class="lead">
         <a class="btn btn-primary btn-lg" href="~/BookLoan/AddRecord" role="button">Add Record</a>
+        <a class="btn btn-primary btn-lg" href="~/BookLoan/Download" role="button">Download All Records</a>
     </p>
-        <p class="lead">
-            <a class="btn btn-primary btn-lg" href="~/BookLoan/Download" role="button">Download</a>
-        </p>
 </div>
 
 <form method="get">
     <div class="my-4">
         <h3>Filter</h3>
         <div>
-            <label for="bookFilter" class="col-form-label float-left">Books:</label>
+            <label for="BookFilter" class="col-form-label float-left">Books:</label>
             <div>
-                <select id="bookFilter" name="bookFilter" class="form-control" multiple>
+                <select id="BookFilter" name="BookFilter" class="form-control" multiple>
                     @foreach (var item in ViewData["Books"] as List<BookViewModel>)
                     {
                         @:<option value="@item.Id"
@@ -34,9 +36,23 @@
                     }
                 </select>
             </div>
-            <label for="readerFilter" class="col-form-label float-left">Readers:</label>
+            <label for="AuthorFilter" class="col-form-label float-left">Authors:</label>
             <div>
-                <select id="readerFilter" name="readerFilter" class="form-control" multiple>
+                <select id="AuthorFilter" name="AuthorFilter" class="form-control" multiple>
+                    @foreach (var item in ViewData["Authors"] as List<AuthorViewModel>)
+                    {
+                        @:<option value="@item.Id"
+                        if ((ViewData["authorFilt"] as int[]).Any(a => item.Id == a))
+                        {
+                            @:selected
+                        }
+                        @: >@item.Name</option>
+                    }
+                </select>
+            </div>
+            <label for="ReaderFilter" class="col-form-label float-left">Readers:</label>
+            <div>
+                <select id="ReaderFilter" name="ReaderFilter" class="form-control" multiple>
                     @foreach (var item in ViewData["Readers"] as List<ReaderViewModel>)
                     {
                         @:<option value="@item.Id"
@@ -48,9 +64,9 @@
                     }
                 </select>
             </div>
-            <label for="staffFilter" class="col-form-label float-left">Staff:</label>
+            <label for="StaffFilter" class="col-form-label float-left">Staff:</label>
             <div>
-                <select id="staffFilter" name="staffFilter" class="form-control" multiple>
+                <select id="StaffFilter" name="StaffFilter" class="form-control" multiple>
                     @foreach (var item in ViewData["Staff"] as List<StaffViewModel>)
                     {
                         @:<option value="@item.Id"
@@ -62,9 +78,40 @@
                     }
                 </select>
             </div>
-            <label for="filter" class="col-form-label float-left">Staff:</label>
+            <div>Borrow Date:</div>
+            <div class="form-row mb-2">
+                <div class="form-col mx-2">
+                    <input id="BorrowDateMinFilter" name="BorrowDateMinFilter" type="date" value="@ViewData["BorrowDateMinFilter"]" class="form-control" placeholder="From Date"/>
+                </div>
+
+                <div class="form-col mr-2">
+                    <input id="BorrowDateMaxFilter" name="BorrowDateMaxFilter" type="date" value="@ViewData["BorrowDateMaxFilter"]" class="form-control" placeholder="To Date"/>
+                </div>
+            </div>
+            <div>Due Date:</div>
+            <div class="form-row mb-2">
+                <div class="form-col mx-2">
+                    <input id="DueDateMinFilter" name="DueDateMinFilter" type="date" value="@ViewData["DueDateMinFilter"]" class="form-control" placeholder="From Date"/>
+                </div>
+
+                <div class="form-col mr-2">
+                    <input id="DueDateManFilter" name="DueDateManFilter" type="date" value="@ViewData["DueDateManFilter"]" class="form-control" placeholder="To Date"/>
+                </div>
+            </div>
+            <div>Return Date:</div>
+            <div class="form-row mb-2">
+                <div class="form-col mx-2">
+                    <input id="ReturnDateMinFilter" name="ReturnDateMinFilter" type="date" value="@ViewData["ReturnDateMinFilter"]" class="form-control" placeholder="From Date"/>
+                </div>
+
+                <div class="form-col mr-2">
+                    <input id="ReturnDateManFilter" name="ReturnDateManFilter" type="date" value="@ViewData["ReturnDateManFilter"]" class="form-control" placeholder="To Date"/>
+                </div>
+            </div>
+
+            <label for="Filter" class="col-form-label float-left">Filter:</label>
             <div>
-                <select id="filter" name="filter" class="form-control">
+                <select id="Filter" name="Filter" class="form-control">
                     <option value="0">
                         All
                     </option>
@@ -80,76 +127,119 @@
     </div>
 
 
-    <button type="submit" class="mt-2 btn btn-primary" value="newItem">Filter</button>
-
+    <button type="submit" name="command" class="mt-2 btn btn-primary" value="filter">Filter</button>
+    <button type="submit" name="command" class="mt-2 btn btn-primary" value="reset">Reset Filters</button>
+    <button type="submit" name="command" class="mt-2 btn btn-primary" value="download">Download With Filters</button>
 </form>
 
 
-<table class="text-center table table-striped">
+<table class="text-center table table-striped mt-2">
     <thead class="thead-light">
     <th scope="col">
         <a asp-action="Index"
-           asp-route-sortBy="book_@ViewData["bookOrder"]"
-           asp-route-readerFilter="@ViewData["readerFiltString"]"
-           asp-route-bookFilter="@ViewData["bookFiltString"]"
-           asp-route-staffFilter="@ViewData["staffFiltString"]"
-           asp-route-pageNumber="@ViewData["page"]"
-           asp-route-filter="@ViewData["filter"]">
+           asp-route-SortBy="book_@ViewData["bookOrder"]"
+           asp-route-ReaderFilter="@ViewData["readerFiltString"]"
+           asp-route-BookFilter="@ViewData["bookFiltString"]"
+           asp-route-StaffFilter="@ViewData["staffFiltString"]"
+           asp-route-PageNumber="@ViewData["page"]"
+           asp-route-Filter="@ViewData["Filter"]"
+           asp-route-AuthorFilter="@ViewData["authorFiltString"]"
+           asp-route-BorrowDateMinFilter="@ViewData["BorrowDateMinFilter"]"
+           asp-route-BorrowDateMaxFilter="@ViewData["BorrowDateMaxFilter"]"
+           asp-route-DueDateMinFilter="@ViewData["DueDateMinFilter"]"
+           asp-route-DueDateManFilter="@ViewData["DueDateManFilter"]"
+           asp-route-ReturnDateMinFilter="@ViewData["ReturnDateMinFilter"]"
+           asp-route-ReturnDateManFilter="@ViewData["ReturnDateManFilter"]">
             Book
         </a>
     </th>
     <th scope="col">
         <a asp-action="Index"
-           asp-route-sortBy="readers_@ViewData["readerOrder"]"
-           asp-route-readerFilter="@ViewData["readerFiltString"]"
-           asp-route-bookFilter="@ViewData["bookFiltString"]"
-           asp-route-staffFilter="@ViewData["staffFiltString"]"
-           asp-route-pageNumber="@ViewData["page"]"
-           asp-route-filter="@ViewData["filter"]">
+           asp-route-SortBy="readers_@ViewData["readerOrder"]"
+           asp-route-ReaderFilter="@ViewData["readerFiltString"]"
+           asp-route-BookFilter="@ViewData["bookFiltString"]"
+           asp-route-StaffFilter="@ViewData["staffFiltString"]"
+           asp-route-PageNumber="@ViewData["page"]"
+           asp-route-Filter="@ViewData["Filter"]"
+           asp-route-AuthorFilter="@ViewData["authorFiltString"]"
+           asp-route-BorrowDateMinFilter="@ViewData["BorrowDateMinFilter"]"
+           asp-route-BorrowDateMaxFilter="@ViewData["BorrowDateMaxFilter"]"
+           asp-route-DueDateMinFilter="@ViewData["DueDateMinFilter"]"
+           asp-route-DueDateManFilter="@ViewData["DueDateManFilter"]"
+           asp-route-ReturnDateMinFilter="@ViewData["ReturnDateMinFilter"]"
+           asp-route-ReturnDateManFilter="@ViewData["ReturnDateManFilter"]">
             Reader
         </a>
     </th>
     <th scope="col">
         <a asp-action="Index"
-           asp-route-sortBy="staff_@ViewData["staffOrder"]"
-           asp-route-readerFilter="@ViewData["readerFiltString"]"
-           asp-route-bookFilter="@ViewData["bookFiltString"]"
-           asp-route-staffFilter="@ViewData["staffFiltString"]"
-           asp-route-pageNumber="@ViewData["page"]"
-           asp-route-filter="@ViewData["filter"]">
+           asp-route-SortBy="staff_@ViewData["staffOrder"]"
+           asp-route-ReaderFilter="@ViewData["readerFiltString"]"
+           asp-route-BookFilter="@ViewData["bookFiltString"]"
+           asp-route-StaffFilter="@ViewData["staffFiltString"]"
+           asp-route-PageNumber="@ViewData["page"]"
+           asp-route-Filter="@ViewData["Filter"]"
+           asp-route-AuthorFilter="@ViewData["authorFiltString"]"
+           asp-route-BorrowDateMinFilter="@ViewData["BorrowDateMinFilter"]"
+           asp-route-BorrowDateMaxFilter="@ViewData["BorrowDateMaxFilter"]"
+           asp-route-DueDateMinFilter="@ViewData["DueDateMinFilter"]"
+           asp-route-DueDateManFilter="@ViewData["DueDateManFilter"]"
+           asp-route-ReturnDateMinFilter="@ViewData["ReturnDateMinFilter"]"
+           asp-route-ReturnDateManFilter="@ViewData["ReturnDateManFilter"]">
             Staff
         </a>
     </th>
     <th scope="col">
         <a asp-action="Index"
-           asp-route-sortBy="borrow_@ViewData["borrowOrder"]"
-           asp-route-readerFilter="@ViewData["readerFiltString"]"
-           asp-route-bookFilter="@ViewData["bookFiltString"]"
-           asp-route-staffFilter="@ViewData["staffFiltString"]"
-           asp-route-pageNumber="@ViewData["page"]"
-           asp-route-filter="@ViewData["filter"]">
+           asp-route-SortBy="borrow_@ViewData["borrowOrder"]"
+           asp-route-ReaderFilter="@ViewData["readerFiltString"]"
+           asp-route-BookFilter="@ViewData["bookFiltString"]"
+           asp-route-StaffFilter="@ViewData["staffFiltString"]"
+           asp-route-PageNumber="@ViewData["page"]"
+           asp-route-Filter="@ViewData["Filter"]"
+           asp-route-AuthorFilter="@ViewData["authorFiltString"]"
+           asp-route-BorrowDateMinFilter="@ViewData["BorrowDateMinFilter"]"
+           asp-route-BorrowDateMaxFilter="@ViewData["BorrowDateMaxFilter"]"
+           asp-route-DueDateMinFilter="@ViewData["DueDateMinFilter"]"
+           asp-route-DueDateManFilter="@ViewData["DueDateManFilter"]"
+           asp-route-ReturnDateMinFilter="@ViewData["ReturnDateMinFilter"]"
+           asp-route-ReturnDateManFilter="@ViewData["ReturnDateManFilter"]">
             Borrow Date
         </a>
     </th>
     <th scope="col">
         <a asp-action="Index"
-           asp-route-sortBy="due_@ViewData["dueOrder"]"
-           asp-route-readerFilter="@ViewData["readerFiltString"]"
-           asp-route-bookFilter="@ViewData["bookFiltString"]"
-           asp-route-staffFilter="@ViewData["staffFiltString"]"
-           asp-route-pageNumber="@ViewData["page"]"
-           asp-route-filter="@ViewData["filter"]">
+           asp-route-SortBy="due_@ViewData["dueOrder"]"
+           asp-route-ReaderFilter="@ViewData["readerFiltString"]"
+           asp-route-BookFilter="@ViewData["bookFiltString"]"
+           asp-route-StaffFilter="@ViewData["staffFiltString"]"
+           asp-route-PageNumber="@ViewData["page"]"
+           asp-route-Filter="@ViewData["Filter"]"
+           asp-route-AuthorFilter="@ViewData["authorFiltString"]"
+           asp-route-BorrowDateMinFilter="@ViewData["BorrowDateMinFilter"]"
+           asp-route-BorrowDateMaxFilter="@ViewData["BorrowDateMaxFilter"]"
+           asp-route-DueDateMinFilter="@ViewData["DueDateMinFilter"]"
+           asp-route-DueDateManFilter="@ViewData["DueDateManFilter"]"
+           asp-route-ReturnDateMinFilter="@ViewData["ReturnDateMinFilter"]"
+           asp-route-ReturnDateManFilter="@ViewData["ReturnDateManFilter"]">
             Due Date
         </a>
     </th>
     <th scope="col">
         <a asp-action="Index"
-           asp-route-sortBy="return_@ViewData["returnOrder"]"
-           asp-route-readerFilter="@ViewData["readerFiltString"]"
-           asp-route-bookFilter="@ViewData["bookFiltString"]"
-           asp-route-staffFilter="@ViewData["staffFiltString"]"
-           asp-route-filter="@ViewData["filter"]"
-           asp-route-pageNumber="@ViewData["page"]">
+           asp-route-SortBy="return_@ViewData["returnOrder"]"
+           asp-route-ReaderFilter="@ViewData["readerFiltString"]"
+           asp-route-BookFilter="@ViewData["bookFiltString"]"
+           asp-route-StaffFilter="@ViewData["staffFiltString"]"
+           asp-route-Filter="@ViewData["Filter"]"
+           asp-route-PageNumber="@ViewData["page"]"
+           asp-route-AuthorFilter="@ViewData["authorFiltString"]"
+           asp-route-BorrowDateMinFilter="@ViewData["BorrowDateMinFilter"]"
+           asp-route-BorrowDateMaxFilter="@ViewData["BorrowDateMaxFilter"]"
+           asp-route-DueDateMinFilter="@ViewData["DueDateMinFilter"]"
+           asp-route-DueDateManFilter="@ViewData["DueDateManFilter"]"
+           asp-route-ReturnDateMinFilter="@ViewData["ReturnDateMinFilter"]"
+           asp-route-ReturnDateManFilter="@ViewData["ReturnDateManFilter"]">
             Return Date
         </a>
     </th>
@@ -212,30 +302,44 @@
 }
 
 <a asp-action="Index"
-   asp-route-sortBy="return_@ViewData["returnOrder"]"
-   asp-route-readerFilter="@ViewData["readerFiltString"]"
-   asp-route-bookFilter="@ViewData["bookFiltString"]"
-   asp-route-staffFilter="@ViewData["staffFiltString"]"
-   asp-route-filter="@ViewData["filter"]"
-   asp-route-pageNumber="@(Model.PageIndex - 1)"
-   class="btn btn-default @prevDisabled">
+   asp-route-SortBy="@ViewData["orderBy"]_@ViewData["currentOrder"]"
+   asp-route-ReaderFilter="@ViewData["readerFiltString"]"
+   asp-route-BookFilter="@ViewData["bookFiltString"]"
+   asp-route-StaffFilter="@ViewData["staffFiltString"]"
+   asp-route-Filter="@ViewData["Filter"]"
+   asp-route-PageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-default @prevDisabled"
+   asp-route-AuthorFilter="@ViewData["authorFiltString"]"
+   asp-route-BorrowDateMinFilter="@ViewData["BorrowDateMinFilter"]"
+   asp-route-BorrowDateMaxFilter="@ViewData["BorrowDateMaxFilter"]"
+   asp-route-DueDateMinFilter="@ViewData["DueDateMinFilter"]"
+   asp-route-DueDateManFilter="@ViewData["DueDateManFilter"]"
+   asp-route-ReturnDateMinFilter="@ViewData["ReturnDateMinFilter"]"
+   asp-route-ReturnDateManFilter="@ViewData["ReturnDateManFilter"]">
     Previous
 </a>
 <a asp-action="Index"
-   asp-route-sortBy="return_@ViewData["returnOrder"]"
-   asp-route-readerFilter="@ViewData["readerFiltString"]"
-   asp-route-bookFilter="@ViewData["bookFiltString"]"
-   asp-route-staffFilter="@ViewData["staffFiltString"]"
-   asp-route-filter="@ViewData["filter"]"
-   asp-route-pageNumber="@(Model.PageIndex + 1)"
-   class="btn btn-default @nextDisabled">
+   asp-route-SortBy="@ViewData["orderBy"]_@ViewData["currentOrder"]"
+   asp-route-ReaderFilter="@ViewData["readerFiltString"]"
+   asp-route-BookFilter="@ViewData["bookFiltString"]"
+   asp-route-StaffFilter="@ViewData["staffFiltString"]"
+   asp-route-Filter="@ViewData["Filter"]"
+   asp-route-PageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-default @nextDisabled"
+   asp-route-AuthorFilter="@ViewData["authorFiltString"]"
+   asp-route-BorrowDateMinFilter="@ViewData["BorrowDateMinFilter"]"
+   asp-route-BorrowDateMaxFilter="@ViewData["BorrowDateMaxFilter"]"
+   asp-route-DueDateMinFilter="@ViewData["DueDateMinFilter"]"
+   asp-route-DueDateManFilter="@ViewData["DueDateManFilter"]"
+   asp-route-ReturnDateMinFilter="@ViewData["ReturnDateMinFilter"]"
+   asp-route-ReturnDateManFilter="@ViewData["ReturnDateManFilter"]">
     Next
 </a>
 
 @section Scripts {
     <script>
         $(document).ready(function () {
-            $('#readerFilter').select2({
+            $('#ReaderFilter').select2({
                 multiple: true
             });
         });
@@ -243,7 +347,7 @@
 
     <script>
             $(document).ready(function () {
-                $('#bookFilter').select2({
+                $('#BookFilter').select2({
                     multiple: true
                 });
             });
@@ -251,15 +355,23 @@
 
     <script>
         $(document).ready(function () {
-            $('#staffFilter').select2({
+            $('#StaffFilter').select2({
                 multiple: true
             });
         });
     </script>
-    
+
+    <script>
+        $(document).ready(function () {
+            $('#AuthorFilter').select2({
+                multiple: true
+            });
+        });
+    </script>
+
     <script>
     $(document).ready(function () {
-        $("#filter").val(@ViewData["filter"]);
+        $("#Filter").val(@ViewData["Filter"]);
             });
     </script>
 }

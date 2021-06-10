@@ -61,9 +61,12 @@ namespace Library.BLL.Services
 
             var config = new MapperConfiguration(cfg =>
             {
+                // cfg.CreateMap<BookLoanRecord, BookLoanRecordDto>();
+                cfg.CreateMap<Book, BookDto>().ForMember(s => s.BookLoanRecords, m => m.Ignore());;
                 cfg.CreateMap<Author, AuthorDto>();
-                cfg.CreateMap<Book, BookDto>();
                 cfg.CreateMap<Genre, GenreDto>();
+                // cfg.CreateMap<Reader, ReaderDto>();
+                // cfg.CreateMap<Staff, StaffDto>();
             });
             config.AssertConfigurationIsValid();
 
@@ -78,9 +81,12 @@ namespace Library.BLL.Services
         {
             var config = new MapperConfiguration(cfg =>
             {
+                // cfg.CreateMap<BookLoanRecord, BookLoanRecordDto>();
+                cfg.CreateMap<Book, BookDto>().ForMember(s => s.BookLoanRecords, m => m.Ignore());;
                 cfg.CreateMap<Author, AuthorDto>();
-                cfg.CreateMap<Book, BookDto>();
                 cfg.CreateMap<Genre, GenreDto>();
+                // cfg.CreateMap<Reader, ReaderDto>();
+                // cfg.CreateMap<Staff, StaffDto>();
             });
             config.AssertConfigurationIsValid();
 
@@ -98,9 +104,12 @@ namespace Library.BLL.Services
         {
             var config = new MapperConfiguration(cfg =>
             {
+                // cfg.CreateMap<BookLoanRecord, BookLoanRecordDto>();
+                cfg.CreateMap<Book, BookDto>().ForMember(s => s.BookLoanRecords, m => m.Ignore());;
                 cfg.CreateMap<Author, AuthorDto>();
-                cfg.CreateMap<Book, BookDto>();
                 cfg.CreateMap<Genre, GenreDto>();
+                // cfg.CreateMap<Reader, ReaderDto>();
+                // cfg.CreateMap<Staff, StaffDto>();
             });
             config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();
@@ -120,9 +129,12 @@ namespace Library.BLL.Services
 
             var config = new MapperConfiguration(cfg =>
             {
+                // cfg.CreateMap<BookLoanRecord, BookLoanRecordDto>();
+                cfg.CreateMap<Book, BookDto>().ForMember(s => s.BookLoanRecords, m => m.Ignore());
                 cfg.CreateMap<Author, AuthorDto>();
-                cfg.CreateMap<Book, BookDto>();
                 cfg.CreateMap<Genre, GenreDto>();
+                // cfg.CreateMap<Reader, ReaderDto>();
+                // cfg.CreateMap<Staff, StaffDto>();
             });
             config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();

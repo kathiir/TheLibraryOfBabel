@@ -35,7 +35,7 @@
         </div>
 
         <label for="NumberOfCopies" class="col-form-label float-left">Number Of Books:</label>
-        <input id="NumberOfCopies" name="NumberOfCopies" type="number" class="form-control" min="0" value="@Model.NumberOfCopies" required/>
+        <input id="NumberOfCopies" name="NumberOfCopies" type="number" class="form-control" min="@ViewData["MinCount"]" value="@Model.NumberOfCopies" required/>
         
         <label for="Genre" class="col-form-label float-left">Genre:</label>
         <div>
